@@ -1,9 +1,22 @@
-import { ApplicationConfig } from '@angular/core';
-import { provideRouter } from '@angular/router';
+import { ApplicationConfig, importProvidersFrom } from '@angular/core';
+import { RouterModule } from '@angular/router';
 
-import { routes } from './app.routes';
-import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
+import { HttpClientModule, provideHttpClient } from '@angular/common/http';
+import { BrowserModule } from '@angular/platform-browser';
+import appRouting from '@app/app.routing';
 
 export const appConfig: ApplicationConfig = {
-  providers: [provideRouter(routes), provideAnimationsAsync()]
-};
+  providers: [
+    importProvidersFrom(
+      BrowserModule,
+      RouterModule.forRoot(appRouting),
+      HttpClientModule,
+    ),
+    provideHttpClient(),
+    // provideAnimations(),
+    // {
+    //   provide: MAT_FORM_FIELD_DEFAULT_OPTIONS,
+    //   useValue: MatFormFieldDefaultOptionsConfig,
+    // },
+  ],
+}
