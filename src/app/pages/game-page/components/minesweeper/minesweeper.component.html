@@ -20,15 +20,16 @@
 }
 
 <div class="messages">
-  <p>{{ minutes | number: '2.0' }}:{{ seconds | number: '2.0' }}</p>
   @if (play) {
     <span class="level__info">
-      Bombs: {{ this.bombs }}, Used flags: {{ this.flags }}
+      Bombs: {{ this.bombs }}, Used flags: {{ this.flags }} <br>
+      Time {{ minutes | number: '2.0' }}:{{ seconds | number: '2.0' }}
     </span>
   }
   @if (isSuccess == 1) {
     <h1>You won</h1>
     <h3>Your score {{ youScore }}</h3>
+    <h4>Your time {{ minutes | number: '2.0' }}:{{ seconds | number: '2.0' }}</h4>
     <span class='reset' (click)="start()">Start again?</span>
   }
   @if (isSuccess == -1) {

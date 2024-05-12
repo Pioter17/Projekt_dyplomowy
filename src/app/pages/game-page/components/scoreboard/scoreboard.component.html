@@ -1,0 +1,7 @@
+<div class="scoreboard">
+  @for (score of scores | slice:0:10; track $index) {
+    <div class="score">
+      {{ score }}
+    </div>
+  }
+</div>

@@ -1,6 +1,21 @@
-<h1>WELCOME TO THE GAME</h1>
-@switch (gameName) {
-  @case ("minesweeper") {
-    <pw-minesweeper (score)="receiveDataFromChild($event)"/>
+<div class="wrapper">
+  <h1 class="title">WELCOME TO THE GAME</h1>
+  <div class="buttons__wrapper">
+    <button (click)="isGame = true" [disabled]="isGame">Game</button>
+    <button (click)="isGame = false" [disabled]="!isGame">Scoreboard</button>
+  </div>
+  @if (isGame) {
+    <div class="game__wrapper">
+      @switch (gameName) {
+        @case ("minesweeper") {
+          <pw-minesweeper (score)="receiveDataFromChild($event)"/>
+        }
+      }
+    </div>
   }
-}
+  @else {
+    <div class="scoreboard__wrapper">
+      <pw-scoreboard [scores]="minesweeperScores"/>
+    </div>
+  }
+</div>
