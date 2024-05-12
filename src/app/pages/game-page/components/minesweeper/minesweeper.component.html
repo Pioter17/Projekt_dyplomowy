@@ -1,0 +1,38 @@
+<p>Hello in minesweeper</p>
+
+<div class="level__picker__wrapper">
+  <button class="level__picker" (click)="start(1)">Easy</button>
+  <button class="level__picker" (click)="start(2)">Medium</button>
+  <button class="level__picker" (click)="start(3)">Hard</button>
+</div>
+@for (row of fields; track row; let rowIndex = $index) {
+  <div class="row">
+    @for (col of row; track col; let colIndex = $index) {
+      <div 
+        [class]="'field ' + (hiddenFields[rowIndex][colIndex] == 1 ? 'hidden' : hiddenFields[rowIndex][colIndex] == -1 ? 'flag' : 'revealed') + ((isSuccess == -1 && fields[rowIndex][colIndex] == -1) ? ' bomb' : '')"
+        (click)="revealField(rowIndex, colIndex)"
+        (contextmenu)="setFlag(rowIndex, colIndex, $event)"
+      >
+        {{ hiddenFields[rowIndex][colIndex] == 1 ? "" : hiddenFields[rowIndex][colIndex] == -1 ? "" : col > 0 ? col : "" }}
+      </div>
+    }
+  </div>
+}
+
+<div class="messages">
+  <p>{{ minutes | number: '2.0' }}:{{ seconds | number: '2.0' }}</p>
+  @if (play) {
+    <span class="level__info">
+      Bombs: {{ this.bombs }}, Used flags: {{ this.flags }}
+    </span>
+  }
+  @if (isSuccess == 1) {
+    <h1>You won</h1>
+    <h3>Your score {{ youScore }}</h3>
+    <span class='reset' (click)="start()">Start again?</span>
+  }
+  @if (isSuccess == -1) {
+    <h1>You lost</h1>
+    <span class='reset' (click)="start()">Start again?</span>
+  }
+</div>

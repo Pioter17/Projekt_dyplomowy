@@ -1,6 +1,7 @@
 import { Routes } from "@angular/router";
 import { RoutesPath } from "@core/constants/routes.const";
 import { DashboardComponent } from "@pages/dashboard/dashboard.component";
+import { GamePageComponent } from "@pages/game-page/game-page.component";
 import { HomeComponent } from "@pages/home/home.component";
 
 export default [
@@ -17,8 +18,8 @@ export default [
         loadChildren: () => import('@pages/account/account.routing')
       },
       {
-        path: RoutesPath.GAMES,
-        loadChildren: () => import('@pages/games/games.routing')
+        path: ':name',
+        component: GamePageComponent
       }
     ]
   }

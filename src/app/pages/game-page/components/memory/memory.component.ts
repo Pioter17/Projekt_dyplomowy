@@ -1,16 +1,14 @@
 import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { RouterModule } from '@angular/router';
 
 @Component({
-  selector: 'pw-games',
+  selector: 'pw-memory',
   standalone: true,
   imports: [
     CommonModule,
-    RouterModule
   ],
-  templateUrl: './games.component.html',
-  styleUrl: './games.component.scss',
+  templateUrl: './memory.component.html',
+  styleUrl: './memory.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class GamesComponent { }
+export class MemoryComponent { }

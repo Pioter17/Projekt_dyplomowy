@@ -17,7 +17,7 @@ import { GameItem } from '@shared/interfaces/game.interface';
 export class GameListComponent {
   games: GameItem[] = [
     {
-      name: "saper",
+      name: "minesweeper",
       image: "zdj"
     },
     {

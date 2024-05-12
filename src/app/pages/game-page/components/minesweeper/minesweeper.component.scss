@@ -1,0 +1,33 @@
+:host {
+  display: block;
+}
+
+.row {
+  display: flex;
+}
+
+.field {
+  width: 30px;
+  height: 30px;
+  border: 1px solid black;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.bomb {
+  background-image: url('/assets/images/minesweeper_images/bomb.png');
+}
+
+.hidden {
+  background-color: green;
+  cursor: pointer;
+}
+
+.revealed {
+  background-color: grey;
+}
+
+.flag {
+  background-image: url('/assets/images/minesweeper_images/flag.png');
+}

@@ -1,0 +1,6 @@
+<h1>WELCOME TO THE GAME</h1>
+@switch (gameName) {
+  @case ("minesweeper") {
+    <pw-minesweeper (score)="receiveDataFromChild($event)"/>
+  }
+}

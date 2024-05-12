@@ -16,7 +16,7 @@ import { RoutesPath } from '@core/constants/routes.const';
 })
 export class GameItemComponent {
   @Input() name: string;
-  path = `/${RoutesPath.HOME}/${RoutesPath.GAMES}/`
+  path = `/${RoutesPath.HOME}/`
 
   constructor(
     private router: Router,
