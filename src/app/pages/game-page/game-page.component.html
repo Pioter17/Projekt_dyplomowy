@@ -10,12 +10,15 @@
         @case ("minesweeper") {
           <pw-minesweeper (score)="receiveDataFromChild($event)"/>
         }
+        @case ("memory") {
+          <pw-memory (score)="receiveDataFromChild($event)"/>
+        }
       }
     </div>
   }
   @else {
     <div class="scoreboard__wrapper">
-      <pw-scoreboard [scores]="minesweeperScores"/>
+      <pw-scoreboard [scores]="activeScores"/>
     </div>
   }
 </div>

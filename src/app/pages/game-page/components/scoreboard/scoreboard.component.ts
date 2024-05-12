@@ -18,7 +18,9 @@ export class ScoreboardComponent {
 
 function convertScores(scores: number[]) {
   let convertedScores: string[] = [];
-  scores.forEach((score) => {
+  scores
+  .sort((a: number, b: number) => b - a)
+  .forEach((score) => {
     let textScore = score.toString();
     for (let i = textScore.length; i < 6; i++) {
       textScore = '0' + textScore;

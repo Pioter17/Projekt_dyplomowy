@@ -22,7 +22,6 @@ export class MinesweeperComponent {
 
   play: boolean;
   isSuccess: number;
-  slider = document.getElementById("slider");
   range: number; // The number of all fields
   rows: number; 
   columns: number;
@@ -36,7 +35,7 @@ export class MinesweeperComponent {
   seconds: number = 0;
   isRunning: boolean = false;
   interval: any;
-  youScore: number
+  youScore: number;
   @Output() score = new EventEmitter<number>();
 
   start(level?: number) {
@@ -197,10 +196,10 @@ export class MinesweeperComponent {
     }
 
     if (this.hiddenLeft == 0) {
-        this.play = false;
-        this.isSuccess = 1;
-        this.stopTimer();
-        this.countScore();
+      this.play = false;
+      this.isSuccess = 1;
+      this.stopTimer();
+      this.countScore();
     }
   }
 

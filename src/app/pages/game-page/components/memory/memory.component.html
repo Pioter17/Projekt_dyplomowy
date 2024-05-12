@@ -1,1 +1,38 @@
-<p>memory works!</p>,
+<p>Hello in memory!</p>
+
+<div class="level__picker__wrapper">
+  <button class="level__picker" (click)="start(1)">Easy</button>
+  <button class="level__picker" (click)="start(2)">Medium</button>
+  <button class="level__picker" (click)="start(3)">Hard</button>
+</div>
+
+@if (play) {
+  <div class="board">
+    @for (item of cardsOrder; track $index) {
+      <img 
+      [src]="'/assets/images/memory_images/'+(firstNr == $index  ? item : secondNr == $index ? item : '0') +'.png'" 
+      (click)="reveal_card($index)"
+      [class]="hidden[$index] == 1 ? 'hidden' : ''"
+      >
+    }
+  </div>
+}
+<div class="messages">
+  @if (play) {
+    <span class="level__info">
+      Turn counter: {{ turns }} <br>
+      Time {{ minutes | number: '2.0' }}:{{ seconds | number: '2.0' }}
+    </span>
+  }
+  @if (isSuccess == 1) {
+    <h1>You WON</h1>
+    <h3>Your score {{ youScore }}</h3>
+    <h4>Your time {{ minutes | number: '2.0' }}:{{ seconds | number: '2.0' }}</h4>
+    <h4>Turns taken {{ turns }}</h4>
+    <span class='reset' (click)="start()">Start again?</span>
+  }
+  @if (isSuccess == -1) {
+    <h1>You LOST</h1>
+    <span class='reset' (click)="start()">Start again?</span>
+  }
+</div>
