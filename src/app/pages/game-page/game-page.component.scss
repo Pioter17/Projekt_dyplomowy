@@ -8,9 +8,17 @@
   flex-direction: column;
   gap: 30px;
   align-items: center;
+  margin-bottom: 100px;
+}
+
+.back {
+  position: absolute;
+  top: 30px;
+  left: 30px;
 }
 
 .title {
+  margin-top: 50px;
   text-align: center;
 }
 
@@ -21,10 +29,8 @@
   gap: 20px;
 }
 
-// .game__wrapper {
-
-// }
-
-// .scoreboard__wrapper {
-
-// }
+.tab__button {
+  font-size: 18px;
+  width: 140px;
+  height: 60px;
+}

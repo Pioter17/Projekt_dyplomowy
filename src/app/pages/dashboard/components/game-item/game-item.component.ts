@@ -1,5 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
+import { MatButtonModule } from '@angular/material/button';
 import { Router, RouterModule, RouterState } from '@angular/router';
 import { RoutesPath } from '@core/constants/routes.const';
 
@@ -8,7 +9,8 @@ import { RoutesPath } from '@core/constants/routes.const';
   standalone: true,
   imports: [
     CommonModule,
-    RouterModule
+    RouterModule,
+    MatButtonModule
   ],
   templateUrl: './game-item.component.html',
   styleUrl: './game-item.component.scss',

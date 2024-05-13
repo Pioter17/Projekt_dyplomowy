@@ -2,6 +2,23 @@
   display: block;
 }
 
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.level__picker__wrapper {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.level__picker {
+  font-size: 20px;
+}
+
 .row {
   display: flex;
 }
@@ -24,6 +41,10 @@
   cursor: pointer;
 }
 
+.hidden:hover {
+  opacity: 0.8;
+}
+
 .revealed {
   background-color: grey;
 }
@@ -32,6 +53,20 @@
   background-image: url('/assets/images/minesweeper_images/flag.png');
 }
 
+.messages {
+  margin-top: 20px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+.level__info {
+  font-size: 16px;
+}
+
 .reset {
-  cursor: pointer;
+  font-size: 16px;
 }

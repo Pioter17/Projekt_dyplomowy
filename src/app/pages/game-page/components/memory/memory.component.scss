@@ -3,9 +3,24 @@
   text-align: center;
 }
 
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.level__picker__wrapper {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.level__picker {
+  font-size: 20px;
+}
+
 .board {
-  // margin: auto;
-  // width: 80%;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -13,17 +28,53 @@
   gap: 10px;
 }
 
-img {
+.image {
   cursor: pointer;
   width: 125px;
   height: 125px;
 }
 
+.image:hover {
+  opacity: 0.9;
+}
+
+.revealed:hover {
+  opacity: 1;
+}
+
 .hidden {
   opacity: 0;
   cursor: auto;
+  width: 125px;
+  height: 125px;
+}
+
+.messages {
+  margin-top: 20px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+.level__info {
+  font-size: 16px;
+}
+
+.success {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.score {
+  font-size: 18px;
+  margin-bottom: 10px;
 }
 
 .reset {
-  cursor: pointer;
+  margin-top: 20px;
+  font-size: 16px;
 }

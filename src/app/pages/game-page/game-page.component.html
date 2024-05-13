@@ -1,8 +1,9 @@
 <div class="wrapper">
+  <button mat-stroked-button class="back" (click)="goBack()">Go back</button>
   <h1 class="title">WELCOME TO THE GAME</h1>
   <div class="buttons__wrapper">
-    <button (click)="isGame = true" [disabled]="isGame">Game</button>
-    <button (click)="isGame = false" [disabled]="!isGame">Scoreboard</button>
+    <button class="tab__button" mat-raised-button (click)="isGame = true" [disabled]="isGame">Game</button>
+    <button class="tab__button" mat-raised-button (click)="isGame = false" [disabled]="!isGame">Scoreboard</button>
   </div>
   @if (isGame) {
     <div class="game__wrapper">

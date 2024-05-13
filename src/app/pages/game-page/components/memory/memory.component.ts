@@ -1,5 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component, EventEmitter, Output } from '@angular/core';
+import { MatButtonModule } from '@angular/material/button';
 import { NumberToStringPipe } from '@shared/pipes/number-to-string.pipe';
 
 @Component({
@@ -7,13 +8,14 @@ import { NumberToStringPipe } from '@shared/pipes/number-to-string.pipe';
   standalone: true,
   imports: [
     CommonModule,
-    NumberToStringPipe
+    NumberToStringPipe,
+    MatButtonModule,
   ],
   templateUrl: './memory.component.html',
   styleUrl: './memory.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class MemoryComponent { 
+export class MemoryComponent {
   constructor(
     private cdr: ChangeDetectorRef,
   ) { }
@@ -142,10 +144,10 @@ export class MemoryComponent {
         this.secondNr = nr;
 
         if(this.cardsOrder[this.firstNr] == this.cardsOrder[this.secondNr]) {
-          setTimeout(() => this.hide2Cards(this.firstNr, nr) , 500);
+          setTimeout(() => this.hide2Cards(this.firstNr, nr) , 300);
         } else {
-          setTimeout(() => this.restore2Cards(), 500);
-        }        
+          setTimeout(() => this.restore2Cards(), 300);
+        }
         this.turns++;
         this.oneVisible = false;
       }

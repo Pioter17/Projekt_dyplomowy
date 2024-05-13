@@ -2,6 +2,7 @@ import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component, EventEmitter, Output } from '@angular/core';
 import { Cords } from '@pages/game-page/interfaces/minesweeper.interface';
 import { MatIconModule } from '@angular/material/icon';
+import { MatButtonModule } from '@angular/material/button';
 
 @Component({
   selector: 'pw-minesweeper',
@@ -9,6 +10,7 @@ import { MatIconModule } from '@angular/material/icon';
   imports: [
     CommonModule,
     MatIconModule,
+    MatButtonModule,
   ],
   templateUrl: './minesweeper.component.html',
   styleUrl: './minesweeper.component.scss',
@@ -23,7 +25,7 @@ export class MinesweeperComponent {
   play: boolean;
   isSuccess: number;
   range: number; // The number of all fields
-  rows: number; 
+  rows: number;
   columns: number;
   gameLevel: number;
   hiddenLeft: number; // the number of fields that are yet hidden
@@ -79,7 +81,7 @@ export class MinesweeperComponent {
     this.bombs = Math.floor(this.range * (bombsPercent / 100));
     this.hiddenLeft = this.range - this.bombs;
 
-    this.fields = this.drawBombs(this.fields, this.bombs);    
+    this.fields = this.drawBombs(this.fields, this.bombs);
   }
 
   startTimer() {
@@ -113,7 +115,7 @@ export class MinesweeperComponent {
   drawBombs(array: number[][], bombs: number) {
     const rows = array.length;
     const cols = array[0].length;
-    
+
     let j = 0;
     while (j < bombs) {
         const randomRow = Math.floor(Math.random() * rows);
@@ -145,11 +147,11 @@ export class MinesweeperComponent {
 
   setFlag(rowId: number, colId: number, event: MouseEvent) {
     event.preventDefault();
-  
+
     if (!this.play) {
       return;
     }
-  
+
     if (this.hiddenFields[rowId][colId] == -1)
     {
       this.hiddenFields[rowId][colId] = 1;
@@ -169,10 +171,10 @@ export class MinesweeperComponent {
           this.hiddenFields[rowId][colId] = 0;
         }
       })
-    })     
+    })
   }
 
-  revealField(rowId: number, colId: number) {  
+  revealField(rowId: number, colId: number) {
     if (!this.play || this.hiddenFields[rowId][colId] == -1) {
       return;
     }

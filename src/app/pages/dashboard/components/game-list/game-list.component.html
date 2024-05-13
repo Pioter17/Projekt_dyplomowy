@@ -1,3 +1,5 @@
-@for (game of games; track $index) {
-  <pw-game-item [name]="game.name"/>
-}
+<div class="wrapper">
+  @for (game of games; track $index) {
+    <pw-game-item class="game__item" [name]="game.name"/>
+  }
+</div>
