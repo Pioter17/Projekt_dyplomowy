@@ -14,6 +14,9 @@
         @case ("memory") {
           <pw-memory (score)="receiveDataFromChild($event)"/>
         }
+        @case ("whack-a-mole") {
+          <pw-whack-a-mole (score)="receiveDataFromChild($event)"/>
+        }
       }
     </div>
   }

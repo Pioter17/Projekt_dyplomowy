@@ -17,12 +17,16 @@ import { GameItem } from '@shared/interfaces/game.interface';
 export class GameListComponent {
   games: GameItem[] = [
     {
-      name: "minesweeper",
+      name: "Minesweeper",
       image: "zdj"
     },
     {
-      name: "memory",
+      name: "Memory",
       image: "zdj"
     },
+    {
+      name: "Whack-a-mole",
+      image: "zdj"
+    }
   ]
 }

@@ -1,0 +1,41 @@
+<div class="wrapper">
+  <h1>Welcome in Whack-a-mole</h1>
+
+  <div class="level__picker__wrapper">
+    <button mat-button class="level__picker" (click)="start(1)">Easy</button>
+    <button mat-button class="level__picker" (click)="start(2)">Medium</button>
+    <button mat-button class="level__picker" (click)="start(3)">Hard</button>
+  </div>
+
+  @if (play) {
+    <div class="board">
+      @for (hole of holesIds; track $index) {
+        <div class="background">
+          <div
+            [class]="'hole ' + (hole == 1 ? 'revealed__hole' : '')"
+            (click)="whack($index)"
+          >
+
+          </div>
+        </div>
+      }
+    </div>
+  }
+  <div class="messages">
+    @if (play) {
+      <span class="level__info">
+        Points: {{ points }}
+      </span>
+      <span class="level__info">
+        Time 0:{{ seconds | number: '2.0' }}
+      </span>
+    }
+    @if (isSuccess == 1) {
+      <h1>You won</h1>
+      <h3>Your score {{ youScore }}</h3>
+      <h4>Your time 0:{{ seconds | number: '2.0' }}</h4>
+      <button mat-stroked-button class='reset' (click)="start()">Start again?</button>
+    }
+  </div>
+
+</div>

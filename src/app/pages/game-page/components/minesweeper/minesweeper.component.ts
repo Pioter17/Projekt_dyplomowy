@@ -49,8 +49,37 @@ export class MinesweeperComponent {
     this.startTimer();
   }
 
-  loadBoard(level?: number) {
+  startTimer() {
+    this.isRunning = true;
+    this.interval = setInterval(() => {
+      if (this.seconds < 59) {
+        this.seconds++;
+      } else {
+        this.minutes++;
+        this.seconds = 0;
+      }
+      if (this.minutes == 60) {
+        this.play = false;
+        this.isSuccess = -1;
+        this.stopTimer();
+      }
+      this.cdr.detectChanges();
+    }, 1000);
+  }
 
+  stopTimer() {
+    clearInterval(this.interval);
+    this.isRunning = false;
+  }
+
+  resetTimer() {
+    clearInterval(this.interval);
+    this.minutes = 0;
+    this.seconds = 0;
+    this.isRunning = false;
+  }
+
+  loadBoard(level?: number) {
     if (level) {
       this.gameLevel = level;
     }
@@ -82,34 +111,6 @@ export class MinesweeperComponent {
     this.hiddenLeft = this.range - this.bombs;
 
     this.fields = this.drawBombs(this.fields, this.bombs);
-  }
-
-  startTimer() {
-    this.isRunning = true;
-    this.interval = setInterval(() => {
-      if (this.seconds < 59) {
-        this.seconds++;
-      } else {
-        this.minutes++;
-        this.seconds = 0;
-      }
-      if (this.minutes == 60) {
-        this.stopTimer();
-      }
-      this.cdr.detectChanges();
-    }, 1000);
-  }
-
-  stopTimer() {
-    clearInterval(this.interval);
-    this.isRunning = false;
-  }
-
-  resetTimer() {
-    clearInterval(this.interval);
-    this.minutes = 0;
-    this.seconds = 0;
-    this.isRunning = false;
   }
 
   drawBombs(array: number[][], bombs: number) {

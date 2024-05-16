@@ -6,8 +6,10 @@ import { RoutesPath } from '@core/constants/routes.const';
 import { MemoryComponent } from '@pages/game-page/components/memory/memory.component';
 import { MinesweeperComponent } from '@pages/game-page/components/minesweeper/minesweeper.component';
 import { ScoreboardComponent } from '@pages/game-page/components/scoreboard/scoreboard.component';
+import { WhackAMoleComponent } from '@pages/game-page/components/whack-a-mole/whack-a-mole.component';
 import { MEMORY_MOCK } from '@pages/game-page/mock/memory-scores.mock';
 import { MINESWEEPER_MOCK } from '@pages/game-page/mock/minesweeper-scores.mock';
+import { WHACKAMOLE_MOCK } from '@pages/game-page/mock/whack-a-mole.mock';
 import { Subject, map, takeUntil } from 'rxjs';
 
 @Component({
@@ -17,6 +19,7 @@ import { Subject, map, takeUntil } from 'rxjs';
     CommonModule,
     MinesweeperComponent,
     MemoryComponent,
+    WhackAMoleComponent,
     ScoreboardComponent,
     MatButtonModule
   ],
@@ -30,6 +33,7 @@ export class GamePageComponent implements OnInit, OnDestroy {
   isGame: boolean = true;
   minesweeperScores = MINESWEEPER_MOCK;
   memoryScores = MEMORY_MOCK;
+  whackamoleScores = WHACKAMOLE_MOCK;
   activeScores: number[];
   onDestroy$ = new Subject<void>();
 
@@ -53,6 +57,10 @@ export class GamePageComponent implements OnInit, OnDestroy {
           case 'memory':
           this.activeScores = this.memoryScores;
           break;
+
+          case 'whack-a-mole':
+          this.activeScores = this.whackamoleScores;
+          break;
         }
       }
     )
@@ -64,7 +72,6 @@ export class GamePageComponent implements OnInit, OnDestroy {
   }
 
   receiveDataFromChild(data: number) {
-    console.log(data);
     this.activeScores.push(data);
   }
 

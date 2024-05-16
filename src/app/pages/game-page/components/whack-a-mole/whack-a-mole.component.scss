@@ -1,0 +1,45 @@
+:host {
+  display: block;
+}
+
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.level__picker__wrapper {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.level__picker {
+  font-size: 20px;
+}
+
+.board {
+  display: flex;
+  flex-wrap: wrap;
+  width: 500px;
+}
+
+.background {
+  background-color: blue;
+  width: 50px;
+  height: 50px;
+  margin: 5px;
+}
+
+.hole {
+  width: inherit;
+  height: inherit;
+  border-radius: 50%;
+  background-color: red;
+  cursor: pointer;
+}
+
+.revealed__hole {
+  background-color: black;
+}

@@ -25,7 +25,6 @@ export class GameItemComponent {
   ) {}
 
   goTo(name: string) {
-    console.log("cokolwiek");
-    void this.router.navigate([this.path, name]);
+    void this.router.navigate([this.path, name.toLowerCase()]);
   }
 }

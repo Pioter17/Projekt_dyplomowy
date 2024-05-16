@@ -42,6 +42,7 @@ export class MemoryComponent {
   start(level?: number) {
     this.play = true;
     this.isSuccess = 0;
+    this.turns = 0;
     this.shuffle(level);
     this.resetTimer();
     this.startTimer();
