@@ -1,0 +1,121 @@
+:host {
+  display: block;
+}
+
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.level__picker__wrapper {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.level__picker {
+  font-size: 20px;
+}
+
+.board {
+  min-width: 480px;
+  min-height: 200px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.ball__row {
+  display: flex;
+  gap: 10px;
+}
+
+.historical {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.actual {
+  display: flex;
+}
+
+.ball {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.historic {
+  cursor: auto;
+}
+
+.__0 {
+  background-color: grey;
+}
+
+.__1 {
+  background-color: orange;
+}
+
+.__2 {
+  background-color: magenta;
+}
+
+.__3 {
+  background-color: green;
+}
+
+.__4 {
+  background-color: red;
+}
+
+.__5 {
+  background-color: purple;
+}
+
+.__6 {
+  background-color: blue;
+}
+
+.__7 {
+  background-color: black;
+  cursor: auto;
+}
+
+.__8 {
+  background-color: white;
+  border: 1px solid black;
+  cursor: auto;
+}
+
+.tips {
+  display: flex;
+  gap: 10px;
+}
+
+.check {
+  margin-left: 20px;
+  align-self: center;
+}
+
+.messages {
+  margin-top: 20px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+.level__info {
+  font-size: 16px;
+}
+
+.reset {
+  font-size: 16px;
+}

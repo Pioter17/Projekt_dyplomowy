@@ -25,7 +25,6 @@ export class WhackAMoleComponent {
   holes: number;
   play: boolean;
   isSuccess: number;
-  minutes: number = 0;
   seconds: number = 0;
   isRunning: boolean = false;
   timeInterval: any;

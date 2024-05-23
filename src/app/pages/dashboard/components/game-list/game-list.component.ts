@@ -27,6 +27,10 @@ export class GameListComponent {
     {
       name: "Whack-a-mole",
       image: "zdj"
+    },
+    {
+      name: "Mastermind",
+      image: "zdj",
     }
   ]
 }

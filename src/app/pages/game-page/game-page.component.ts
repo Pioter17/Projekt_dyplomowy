@@ -3,10 +3,12 @@ import { ChangeDetectionStrategy, Component, OnDestroy, OnInit } from '@angular/
 import { MatButtonModule } from '@angular/material/button';
 import { ActivatedRoute, Router } from '@angular/router';
 import { RoutesPath } from '@core/constants/routes.const';
+import { MastermindComponent } from '@pages/game-page/components/mastermind/mastermind.component';
 import { MemoryComponent } from '@pages/game-page/components/memory/memory.component';
 import { MinesweeperComponent } from '@pages/game-page/components/minesweeper/minesweeper.component';
 import { ScoreboardComponent } from '@pages/game-page/components/scoreboard/scoreboard.component';
 import { WhackAMoleComponent } from '@pages/game-page/components/whack-a-mole/whack-a-mole.component';
+import { MASTERMIND_MOCK } from '@pages/game-page/mock/mastermind-scores.mock';
 import { MEMORY_MOCK } from '@pages/game-page/mock/memory-scores.mock';
 import { MINESWEEPER_MOCK } from '@pages/game-page/mock/minesweeper-scores.mock';
 import { WHACKAMOLE_MOCK } from '@pages/game-page/mock/whack-a-mole.mock';
@@ -20,6 +22,7 @@ import { Subject, map, takeUntil } from 'rxjs';
     MinesweeperComponent,
     MemoryComponent,
     WhackAMoleComponent,
+    MastermindComponent,
     ScoreboardComponent,
     MatButtonModule
   ],
@@ -34,6 +37,7 @@ export class GamePageComponent implements OnInit, OnDestroy {
   minesweeperScores = MINESWEEPER_MOCK;
   memoryScores = MEMORY_MOCK;
   whackamoleScores = WHACKAMOLE_MOCK;
+  mastermindScores = MASTERMIND_MOCK;
   activeScores: number[];
   onDestroy$ = new Subject<void>();
 
@@ -60,6 +64,10 @@ export class GamePageComponent implements OnInit, OnDestroy {
 
           case 'whack-a-mole':
           this.activeScores = this.whackamoleScores;
+          break;
+
+          case 'mastermind':
+          this.activeScores = this.mastermindScores;
           break;
         }
       }
