@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component, EventEmitter, Output } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
+import { ScoreboardService } from '@pages/game-page/scoreboard.service';
 
 @Component({
   selector: 'pw-whack-a-mole',
@@ -17,6 +18,7 @@ export class WhackAMoleComponent {
 
   constructor(
     private cdr: ChangeDetectorRef,
+    private scoreService: ScoreboardService,
   ) { }
 
   gameLevel: number;
@@ -133,6 +135,6 @@ export class WhackAMoleComponent {
 
   countScore() {
     this.youScore = Math.floor(6000 * this.gameLevel * this.points)
-    this.score.emit(this.youScore);
+    this.scoreService.updateScores(this.youScore);
   }
 }

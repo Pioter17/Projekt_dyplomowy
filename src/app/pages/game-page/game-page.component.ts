@@ -1,86 +1,48 @@
 import { CommonModule } from '@angular/common';
-import { ChangeDetectionStrategy, Component, OnDestroy, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
+import { MatExpansionModule } from '@angular/material/expansion';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Game } from '@core/config/game.interface';
+import { Games } from '@core/config/games.config';
 import { RoutesPath } from '@core/constants/routes.const';
-import { MastermindComponent } from '@pages/game-page/components/mastermind/mastermind.component';
-import { MemoryComponent } from '@pages/game-page/components/memory/memory.component';
-import { MinesweeperComponent } from '@pages/game-page/components/minesweeper/minesweeper.component';
 import { ScoreboardComponent } from '@pages/game-page/components/scoreboard/scoreboard.component';
-import { WhackAMoleComponent } from '@pages/game-page/components/whack-a-mole/whack-a-mole.component';
-import { MASTERMIND_MOCK } from '@pages/game-page/mock/mastermind-scores.mock';
-import { MEMORY_MOCK } from '@pages/game-page/mock/memory-scores.mock';
-import { MINESWEEPER_MOCK } from '@pages/game-page/mock/minesweeper-scores.mock';
-import { WHACKAMOLE_MOCK } from '@pages/game-page/mock/whack-a-mole.mock';
-import { Subject, map, takeUntil } from 'rxjs';
+import { ScoreboardService } from '@pages/game-page/scoreboard.service';
+import { Observable, map, tap } from 'rxjs';
 
 @Component({
   selector: 'pw-game-page',
   standalone: true,
   imports: [
     CommonModule,
-    MinesweeperComponent,
-    MemoryComponent,
-    WhackAMoleComponent,
-    MastermindComponent,
     ScoreboardComponent,
-    MatButtonModule
+    MatButtonModule,
+    MatExpansionModule,
   ],
   templateUrl: './game-page.component.html',
   styleUrl: './game-page.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class GamePageComponent implements OnInit, OnDestroy {
+export class GamePageComponent implements OnInit {
 
   gameName: string;
   isGame: boolean = true;
-  minesweeperScores = MINESWEEPER_MOCK;
-  memoryScores = MEMORY_MOCK;
-  whackamoleScores = WHACKAMOLE_MOCK;
-  mastermindScores = MASTERMIND_MOCK;
-  activeScores: number[];
-  onDestroy$ = new Subject<void>();
+  activeGame$: Observable<Game>;
+  helpOpenState = false;
 
   constructor(
     private route: ActivatedRoute,
     private router: Router,
+    private scoreService: ScoreboardService,
   ) { }
 
   ngOnInit(): void {
-    this.route.params.pipe(
+    this.activeGame$ = this.route.params.pipe(
       map((params) => params['name'] as string),
-      takeUntil(this.onDestroy$),
-    ).subscribe(
-      (name) => {
-        this.gameName = name;
-        switch (this.gameName) {
-          case 'minesweeper':
-            this.activeScores = this.minesweeperScores;
-            break;
-
-          case 'memory':
-          this.activeScores = this.memoryScores;
-          break;
-
-          case 'whack-a-mole':
-          this.activeScores = this.whackamoleScores;
-          break;
-
-          case 'mastermind':
-          this.activeScores = this.mastermindScores;
-          break;
-        }
-      }
-    )
-  }
-
-  ngOnDestroy(): void {
-    this.onDestroy$.next();
-    this.onDestroy$.complete();
-  }
-
-  receiveDataFromChild(data: number) {
-    this.activeScores.push(data);
+      tap((name) => this.gameName = name),
+      tap((name) => this.scoreService.setInitialScores(Games?.[name].scores)),
+      map((name) => Games?.[name]),
+    );
   }
 
   goBack() {

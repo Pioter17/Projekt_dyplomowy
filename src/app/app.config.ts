@@ -3,6 +3,7 @@ import { RouterModule } from '@angular/router';
 
 import { HttpClientModule, provideHttpClient } from '@angular/common/http';
 import { BrowserModule } from '@angular/platform-browser';
+import { provideAnimations } from '@angular/platform-browser/animations';
 import appRouting from '@app/app.routing';
 
 export const appConfig: ApplicationConfig = {
@@ -13,7 +14,7 @@ export const appConfig: ApplicationConfig = {
       HttpClientModule,
     ),
     provideHttpClient(),
-    // provideAnimations(),
+    provideAnimations(),
     // {
     //   provide: MAT_FORM_FIELD_DEFAULT_OPTIONS,
     //   useValue: MatFormFieldDefaultOptionsConfig,

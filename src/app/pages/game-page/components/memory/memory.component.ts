@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component, EventEmitter, Output } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
+import { ScoreboardService } from '@pages/game-page/scoreboard.service';
 import { NumberToStringPipe } from '@shared/pipes/number-to-string.pipe';
 
 @Component({
@@ -18,6 +19,7 @@ import { NumberToStringPipe } from '@shared/pipes/number-to-string.pipe';
 export class MemoryComponent {
   constructor(
     private cdr: ChangeDetectorRef,
+    private scoreService: ScoreboardService,
   ) { }
 
   play: boolean;
@@ -180,7 +182,7 @@ export class MemoryComponent {
 
   countScore() {
     this.youScore = Math.pow(10, this.gameLevel+3)-Math.floor(this.minutes*6*Math.pow(10, this.gameLevel+1)/(this.gameLevel+3))-Math.floor(this.seconds*Math.pow(10, this.gameLevel+1)/(this.gameLevel+3))-Math.floor(this.turns*Math.pow(10, this.gameLevel+1)/this.gameLevel)
-    this.score.emit(this.youScore);
+    this.scoreService.updateScores(this.youScore);
   }
 }
 

@@ -6,26 +6,33 @@
     <button class="tab__button" mat-raised-button (click)="isGame = false" [disabled]="!isGame">Scoreboard</button>
   </div>
   @if (isGame) {
-    <div class="game__wrapper">
-      @switch (gameName) {
-        @case ("minesweeper") {
-          <pw-minesweeper (score)="receiveDataFromChild($event)"/>
-        }
-        @case ("memory") {
-          <pw-memory (score)="receiveDataFromChild($event)"/>
-        }
-        @case ("whack-a-mole") {
-          <pw-whack-a-mole (score)="receiveDataFromChild($event)"/>
-        }
-        @case ("mastermind") {
-          <pw-mastermind (score)="receiveDataFromChild($event)"/>
-        }
-      }
-    </div>
+    @if (activeGame$ |async; as activeGame) {
+      <div class="tips__wrapper">
+        <mat-accordion>
+          <mat-expansion-panel
+            (opened)="helpOpenState = true"
+            (closed)="helpOpenState = false"
+          >
+            <mat-expansion-panel-header>
+              <mat-panel-title>
+                How to play?
+              </mat-panel-title>
+              <mat-panel-description>
+                {{helpOpenState ? 'Hide tips' : 'Show tips'}}
+              </mat-panel-description>
+            </mat-expansion-panel-header>
+            <ng-container *ngComponentOutlet="activeGame.tips"/>
+          </mat-expansion-panel>
+        </mat-accordion>
+      </div>
+      <div class="game__wrapper">
+        <ng-container *ngComponentOutlet="activeGame.game"/>
+      </div>
+    }
   }
   @else {
     <div class="scoreboard__wrapper">
-      <pw-scoreboard [scores]="activeScores"/>
+      <pw-scoreboard />
     </div>
   }
 </div>

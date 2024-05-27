@@ -3,6 +3,7 @@ import { ChangeDetectionStrategy, ChangeDetectorRef, Component, EventEmitter, Ou
 import { Cords } from '@pages/game-page/interfaces/minesweeper.interface';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
+import { ScoreboardService } from '@pages/game-page/scoreboard.service';
 
 @Component({
   selector: 'pw-minesweeper',
@@ -20,6 +21,7 @@ export class MinesweeperComponent {
 
   constructor(
     private cdr: ChangeDetectorRef,
+    private scoreService: ScoreboardService,
   ) { }
 
   play: boolean;
@@ -244,6 +246,6 @@ export class MinesweeperComponent {
 
   countScore() {
     this.youScore = Math.pow(10, this.gameLevel+3)-Math.floor(this.minutes*6*Math.pow(10, this.gameLevel+1)/(this.gameLevel+3))-Math.floor(this.seconds*Math.pow(10, this.gameLevel+1)/(this.gameLevel+3))
-    this.score.emit(this.youScore);
+    this.scoreService.updateScores(this.youScore);
   }
 }

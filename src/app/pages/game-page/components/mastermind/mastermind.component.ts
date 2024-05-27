@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component, EventEmitter, Output } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
+import { ScoreboardService } from '@pages/game-page/scoreboard.service';
 
 @Component({
   selector: 'pw-mastermind',
@@ -34,6 +35,7 @@ export class MastermindComponent {
 
   constructor(
     private cdr: ChangeDetectorRef,
+    private scoreService: ScoreboardService,
   ) { }
 
 
@@ -163,6 +165,6 @@ export class MastermindComponent {
     if (this.youScore > 1000000) {
       this.youScore = 1000000;
     }
-    this.score.emit(this.youScore);
+    this.scoreService.updateScores(this.youScore);
   }
 }
