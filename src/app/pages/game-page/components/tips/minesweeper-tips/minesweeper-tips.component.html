@@ -1,29 +1,26 @@
-<div class="wrapper">
-  <h4>Here are game fundamentals:</h4>
+<div class="wrapper" *transloco="let t; prefix: 'minesweeperTips'">
+  <h4>{{t('1')}}</h4>
   <ol>
-    <li>Click with your left mouse button on the hidden square</li>
+    <li>{{t('2')}}</li>
     <li>
-      You can uncover 3 types of fields:
+      {{t('3')}}
       <ul>
         <li>
-          <img src="/assets/images/minesweeper_images/b0.png" alt=""> - The field doesn't have any bomb nearby,
+          <img src="/assets/images/minesweeper_images/b0.png" alt=""> - {{t('4')}}
         </li>
         <li>
-          <img src="/assets/images/minesweeper_images/b5.png" alt=""> - The field has as many bombs on the fields around it,
-          as the number tells (e.g. this field has five bombs on the fields around it),
+          <img src="/assets/images/minesweeper_images/b5.png" alt=""> - {{t('5')}}
         </li>
         <li>
-          <img src="/assets/images/minesweeper_images/bomb.png" alt="cos"> - You were unlucky to find the bomb, the game is over.
-          You can try again.
+          <img src="/assets/images/minesweeper_images/bomb.png" alt="cos"> - {{t('6')}}
         </li>
       </ul>
     </li>
-    <li>Your task is to uncover all of the fields that are not bombs</li>
+    <li>{{t('7')}}</li>
     <li>
-      <img src="/assets/images/minesweeper_images/flag.png" alt=""> Click with your right mouse button to place a flag.
-      It will help you to remember where you think the bombs are.
+      <img src="/assets/images/minesweeper_images/flag.png" alt=""> {{t('8')}}
     </li>
-    <li>You get points based on the completion time (you don't get any points if you uncover the bomb)</li>
-    <li>On harder levels the board is bigger and there are more bombs, but you get more points too</li>
+    <li>{{t('9')}}</li>
+    <li>{{t('10')}}</li>
   </ol>
 </div>

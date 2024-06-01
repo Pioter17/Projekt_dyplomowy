@@ -1,5 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { TranslocoModule } from '@jsverse/transloco';
 import { GameListComponent } from '@pages/dashboard/components/game-list/game-list.component';
 
 @Component({
@@ -7,7 +8,8 @@ import { GameListComponent } from '@pages/dashboard/components/game-list/game-li
   standalone: true,
   imports: [
     CommonModule,
-    GameListComponent
+    GameListComponent,
+    TranslocoModule
   ],
   templateUrl: './dashboard.component.html',
   styleUrl: './dashboard.component.scss',

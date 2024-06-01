@@ -1,10 +1,8 @@
-<div class="wrapper">
-  <h1>Hello in Minesweeper</h1>
-
+<div class="wrapper" *transloco="let t">
   <div class="level__picker__wrapper">
-    <button mat-button class="level__picker" (click)="start(1)">Easy</button>
-    <button mat-button class="level__picker" (click)="start(2)">Medium</button>
-    <button mat-button class="level__picker" (click)="start(3)">Hard</button>
+    <button mat-button class="level__picker" (click)="start(1)">{{t('levels.easy')}}</button>
+    <button mat-button class="level__picker" (click)="start(2)">{{t('levels.medium')}}</button>
+    <button mat-button class="level__picker" (click)="start(3)">{{t('levels.hard')}}</button>
   </div>
   @for (row of fields; track row; let rowIndex = $index) {
     <div class="row">
@@ -23,21 +21,21 @@
   <div class="messages">
     @if (play) {
       <span class="level__info">
-        Bombs: {{ this.bombs }}, Used flags: {{ this.flags }} <br>
+        {{t('bombs')}}: {{ this.bombs }}, {{t('flags')}}: {{ this.flags }} <br>
       </span>
       <span class="level__info">
-        Time {{ minutes | number: '2.0' }}:{{ seconds | number: '2.0' }}
+        {{t('time')}} {{ minutes | number: '2.0' }}:{{ seconds | number: '2.0' }}
       </span>
     }
     @if (isSuccess == 1) {
-      <h1>You won</h1>
-      <h3>Your score {{ youScore }}</h3>
-      <h4>Your time {{ minutes | number: '2.0' }}:{{ seconds | number: '2.0' }}</h4>
-      <button mat-stroked-button class='reset' (click)="start()">Start again?</button>
+      <h1>{{t('youWon')}}</h1>
+      <h3>{{t('yourScore')}} {{ youScore }}</h3>
+      <h4>{{t('yourTime')}} {{ minutes | number: '2.0' }}:{{ seconds | number: '2.0' }}</h4>
+      <button mat-stroked-button class='reset' (click)="start()">{{t('startAgain')}}</button>
     }
     @if (isSuccess == -1) {
-      <h1>You lost</h1>
-      <button mat-stroked-button class='reset' (click)="start()">Start again?</button>
+      <h1>{{t('youLost')}}</h1>
+      <button mat-stroked-button class='reset' (click)="start()">{{t('startAgain')}}</button>
     }
   </div>
 </div>

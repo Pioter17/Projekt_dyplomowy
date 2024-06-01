@@ -3,6 +3,7 @@ import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { Router, RouterModule, RouterState } from '@angular/router';
 import { RoutesPath } from '@core/constants/routes.const';
+import { TranslocoModule } from '@jsverse/transloco';
 
 @Component({
   selector: 'pw-game-item',
@@ -10,7 +11,8 @@ import { RoutesPath } from '@core/constants/routes.const';
   imports: [
     CommonModule,
     RouterModule,
-    MatButtonModule
+    MatButtonModule,
+    TranslocoModule
   ],
   templateUrl: './game-item.component.html',
   styleUrl: './game-item.component.scss',

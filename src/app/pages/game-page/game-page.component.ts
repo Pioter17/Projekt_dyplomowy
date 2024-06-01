@@ -6,6 +6,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Game } from '@core/config/game.interface';
 import { Games } from '@core/config/games.config';
 import { RoutesPath } from '@core/constants/routes.const';
+import { TranslocoModule } from '@jsverse/transloco';
 import { ScoreboardComponent } from '@pages/game-page/components/scoreboard/scoreboard.component';
 import { ScoreboardService } from '@pages/game-page/scoreboard.service';
 import { Observable, map, tap } from 'rxjs';
@@ -18,6 +19,7 @@ import { Observable, map, tap } from 'rxjs';
     ScoreboardComponent,
     MatButtonModule,
     MatExpansionModule,
+    TranslocoModule
   ],
   templateUrl: './game-page.component.html',
   styleUrl: './game-page.component.scss',
@@ -43,9 +45,5 @@ export class GamePageComponent implements OnInit {
       tap((name) => this.scoreService.setInitialScores(Games?.[name].scores)),
       map((name) => Games?.[name]),
     );
-  }
-
-  goBack() {
-    this.router.navigateByUrl(RoutesPath.HOME)
   }
 }

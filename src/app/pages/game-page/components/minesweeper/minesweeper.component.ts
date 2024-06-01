@@ -4,6 +4,7 @@ import { Cords } from '@pages/game-page/interfaces/minesweeper.interface';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { ScoreboardService } from '@pages/game-page/scoreboard.service';
+import { TranslocoModule } from '@jsverse/transloco';
 
 @Component({
   selector: 'pw-minesweeper',
@@ -12,6 +13,7 @@ import { ScoreboardService } from '@pages/game-page/scoreboard.service';
     CommonModule,
     MatIconModule,
     MatButtonModule,
+    TranslocoModule
   ],
   templateUrl: './minesweeper.component.html',
   styleUrl: './minesweeper.component.scss',

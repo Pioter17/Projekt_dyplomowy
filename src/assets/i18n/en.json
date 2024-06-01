@@ -1,0 +1,72 @@
+{
+  "welcome": "WELCOME TO GAME HUB",
+  "games": {
+    "minesweeper": "Minesweeper",
+    "memory": "Memory",
+    "mastermind": "Mastermind",
+    "whack-a-mole": "Whack-a-mole",
+    "try": "Try it!"
+  },
+  "goBack": "Go back",
+  "changeLanguage": "Change language",
+  "welcomeGame": "Welcome to the {{name}}",
+  "game": "Game",
+  "scoreboard": "Scoreboard",
+  "howToPlay": "How to play?",
+  "showTips": "Show tips",
+  "hideTips": "Hide tips",
+  "levels": {
+    "easy": "Easy",
+    "medium": "Medium",
+    "hard": "Hard"
+  },
+  "turns": "Turns",
+  "points": "Points",
+  "yourPoints": "Your points",
+  "time": "Time",
+  "score": "Score",
+  "yourTime": "Your time",
+  "youWon": "You won",
+  "youLost": "You lost",
+  "startAgain": "Start again?",
+  "mastermindError": "You have to change color of every ball first",
+  "check": "Check",
+  "yourScore": "Your score",
+  "turnsTaken": "Turns taken",
+  "bombs": "Bombs",
+  "flags": "Used flags",
+  "mastermindTips": {
+    "1": "Here are game fundamentals:",
+    "2": "Click on the circle to change its color",
+    "3": "Click 'check' button to see if you found the right combination",
+    "4": "After checking you may see some number of white/black circles next to your combination. White circle means that you guessed one of the balls' colors correctly, but placed it in the wrong spot. Black circle means that you guessed one of the balls correctly (both color and position)",
+    "5": "Your goal is to guess the right combination of colors",
+    "6": "You get points based on the number of turns you needed and overall time it took you to complete the task"
+  },
+  "memoryTips": {
+    "1": "Here are game fundamentals:",
+    "2": "Click on the image you want to uncover",
+    "3": "Click on the second image and, if they are not the same, try to remember their content and position, as they will cover back in a moment",
+    "4": "If the pictures were the same, they will disappear and you don't have to think of them anymore",
+    "5": "You get points for clearing the board",
+    "6": "The fewer turns and time you spend, the more points you'll get"
+  },
+  "minesweeperTips": {
+    "1": "Here are game fundamentals:",
+    "2": "Click with your left mouse button on the hidden square",
+    "3": "You can uncover 3 types of fields:",
+    "4": "The field doesn't have any bomb nearby,",
+    "5": "The field has as many bombs on the fields around it, as the number tells (e.g. this field has five bombs on the fields around it),",
+    "6": "You were unlucky to find the bomb, the game is over. You can try again",
+    "7": "Your task is to uncover all of the fields that are not bombs",
+    "8": "Click with your right mouse button to place a flag. It will help you to remember where you think the bombs are",
+    "9": "You get points based on the completion time (you don't get any points if you uncover the bomb)",
+    "10": "On harder levels the board is bigger and there are more bombs, but you get more points too"
+  },
+  "whackamoleTips": {
+    "1": "Here are game fundamentals:",
+    "2": "Click on the black circle as fast as you can",
+    "3": "You have limited time",
+    "4": "On harder levels time is shorter and the moles' hide speed is faster, but you also get more points"
+  }
+}

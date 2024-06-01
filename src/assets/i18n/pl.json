@@ -1,0 +1,72 @@
+{
+  "welcome": "WITAJ W GAME HUB",
+  "games": {
+    "minesweeper": "Saper",
+    "memory": "Memory",
+    "mastermind": "Mastermind",
+    "whack-a-mole": "Zbij Kreta",
+    "try": "Spróbuj!"
+  },
+  "goBack": "Wróć",
+  "changeLanguage": "Zmień język",
+  "welcomeGame": "Witaj w {{name}}",
+  "game": "Gra",
+  "scoreboard": "Tablica wyników",
+  "howToPlay": "Jak grać?",
+  "showTips": "Pokaż wskazówki",
+  "hideTips": "Ukryj wskazówki",
+  "levels": {
+    "easy": "Łatwy",
+    "medium": "Średni",
+    "hard": "Trudny"
+  },
+  "turns": "Tury",
+  "points": "Punkty",
+  "yourPoints": "Twoje punkty",
+  "time": "Czas",
+  "score": "Wynik",
+  "yourTime": "Twój czas",
+  "youWon": "Wygrałeś",
+  "youLost": "Przegrałeś",
+  "startAgain": "Zacząć od nowa?",
+  "mastermindError": "Musisz najpierw zmienić kolor każdej kulki",
+  "check": "Sprawdź",
+  "yourScore": "Twój wynik",
+  "turnsTaken": "Ilość tur",
+  "bombs": "Bomby",
+  "flags": "Użyte flagi",
+  "mastermindTips": {
+    "1": "Oto podstawy gry:",
+    "2": "Kliknij na kółko, aby zmienić jego kolor",
+    "3": "Kliknij przycisk 'sprawdź', aby zobaczyć, czy odgadłeś prawidłową kombinację",
+    "4": "Po sprawdzeniu możesz zobaczyć pewną liczbę białych/czarnych kółek obok twojej kombinacji. Białe kółko oznacza, że odgadłeś kolor jednej z kulek poprawnie, ale umieściłeś ją w złym miejscu. Czarne kółko oznacza, że odgadłeś jedną z kulek poprawnie (zarówno kolor, jak i pozycję)",
+    "5": "Twoim celem jest odgadnięcie prawidłowej kombinacji kolorów",
+    "6": "Otrzymujesz punkty na podstawie liczby potrzebnych tur i ogólnego czasu, jaki zajęło ci wykonanie zadania"
+  },
+  "memoryTips": {
+    "1": "Oto podstawy gry:",
+    "2": "Kliknij na obraz, który chcesz odkryć",
+    "3": "Kliknij na drugi obraz i, jeśli nie są takie same, spróbuj zapamiętać ich zawartość i pozycję, ponieważ wkrótce zostaną zakryte",
+    "4": "Jeśli obrazy były takie same, znikną i nie musisz się już nimi przejmować",
+    "5": "Otrzymujesz punkty za wyczyszczenie planszy",
+    "6": "Im mniej tur i czasu spędzisz, tym więcej punktów zdobędziesz"
+  },
+  "minesweeperTips": {
+    "1": "Oto podstawy gry:",
+    "2": "Kliknij lewym przyciskiem myszy na ukryte pole",
+    "3": "Możesz odkryć 3 rodzaje pól:",
+    "4": "Pole nie ma żadnej bomby w pobliżu,",
+    "5": "Pole ma tyle bomb na sąsiednich polach, ile jest na nim napisane (np. wokół tego pola jest pięć bomb),",
+    "6": "Miałeś pecha i znalazłeś bombę, gra się kończy. Możesz spróbować ponownie",
+    "7": "Twoim zadaniem jest odkrycie wszystkich pól, które nie są bombami",
+    "8": "Kliknij prawym przyciskiem myszy, aby umieścić flagę. Pomoże ci to zapamiętać, gdzie według ciebie są bomby",
+    "9": "Otrzymujesz punkty na podstawie czasu ukończenia (nie otrzymujesz żadnych punktów, jeśli odkryjesz bombę)",
+    "10": "Na trudniejszych poziomach plansza jest większa i jest więcej bomb, ale otrzymujesz też więcej punktów"
+  },
+  "whackamoleTips": {
+    "1": "Oto podstawy gry:",
+    "2": "Kliknij na czarne kółko tak szybko, jak możesz",
+    "3": "Masz ograniczony czas",
+    "4": "Na trudniejszych poziomach czas jest krótszy, a prędkość ukrywania kretów jest szybsza, ale otrzymujesz też więcej punktów"
+  }
+}

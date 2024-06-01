@@ -1,10 +1,8 @@
-<div class="wrapper">
-  <h1>Welcome in Whack-a-mole</h1>
-
+<div class="wrapper" *transloco="let t">
   <div class="level__picker__wrapper">
-    <button mat-button class="level__picker" (click)="start(1)">Easy</button>
-    <button mat-button class="level__picker" (click)="start(2)">Medium</button>
-    <button mat-button class="level__picker" (click)="start(3)">Hard</button>
+    <button mat-button class="level__picker" (click)="start(1)">{{t('levels.easy')}}</button>
+    <button mat-button class="level__picker" (click)="start(2)">{{t('levels.medium')}}</button>
+    <button mat-button class="level__picker" (click)="start(3)">{{t('levels.hard')}}</button>
   </div>
 
   @if (play) {
@@ -15,7 +13,6 @@
             [class]="'hole ' + (hole == 1 ? 'revealed__hole' : '')"
             (click)="whack($index)"
           >
-
           </div>
         </div>
       }
@@ -24,18 +21,17 @@
   <div class="messages">
     @if (play) {
       <span class="level__info">
-        Points: {{ points }}
+        {{t('points')}}: {{ points }}
       </span>
       <span class="level__info">
-        Time 0:{{ seconds | number: '2.0' }}
+        {{t('time')}} 0:{{ seconds | number: '2.0' }}
       </span>
     }
     @if (isSuccess == 1) {
-      <h1>You won</h1>
-      <h3>Your score {{ youScore }}</h3>
-      <h4>Your time 0:{{ seconds | number: '2.0' }}</h4>
-      <button mat-stroked-button class='reset' (click)="start()">Start again?</button>
+      <h1>{{t('youWon')}}</h1>
+      <h3>{{t('yourScore')}} {{ youScore }}</h3>
+      <h4>{{t('yourPoints')}} {{ points }}</h4>
+      <button mat-stroked-button class='reset' (click)="start()">{{t('startAgain')}}</button>
     }
   </div>
-
 </div>

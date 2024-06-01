@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component, EventEmitter, Output } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
+import { TranslocoModule } from '@jsverse/transloco';
 import { ScoreboardService } from '@pages/game-page/scoreboard.service';
 
 @Component({
@@ -8,7 +9,8 @@ import { ScoreboardService } from '@pages/game-page/scoreboard.service';
   standalone: true,
   imports: [
     CommonModule,
-    MatButtonModule
+    MatButtonModule,
+    TranslocoModule
   ],
   templateUrl: './whack-a-mole.component.html',
   styleUrl: './whack-a-mole.component.scss',

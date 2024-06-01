@@ -1,9 +1,8 @@
-<div class="wrapper">
-  <button mat-stroked-button class="back" (click)="goBack()">Go back</button>
-  <h1 class="title">WELCOME TO THE GAME</h1>
+<div class="wrapper" *transloco="let t">
+  <h1 class="title">{{ t('welcomeGame', {name: gameName}) }}</h1>
   <div class="buttons__wrapper">
-    <button class="tab__button" mat-raised-button (click)="isGame = true" [disabled]="isGame">Game</button>
-    <button class="tab__button" mat-raised-button (click)="isGame = false" [disabled]="!isGame">Scoreboard</button>
+    <button class="tab__button" mat-raised-button (click)="isGame = true" [disabled]="isGame">{{t('game')}}</button>
+    <button class="tab__button" mat-raised-button (click)="isGame = false" [disabled]="!isGame">{{t('scoreboard')}}</button>
   </div>
   @if (isGame) {
     @if (activeGame$ |async; as activeGame) {
@@ -15,10 +14,10 @@
           >
             <mat-expansion-panel-header>
               <mat-panel-title>
-                How to play?
+                {{t('howToPlay')}}
               </mat-panel-title>
               <mat-panel-description>
-                {{helpOpenState ? 'Hide tips' : 'Show tips'}}
+                {{t(helpOpenState ? 'hideTips' : 'showTips')}}
               </mat-panel-description>
             </mat-expansion-panel-header>
             <ng-container *ngComponentOutlet="activeGame.tips"/>

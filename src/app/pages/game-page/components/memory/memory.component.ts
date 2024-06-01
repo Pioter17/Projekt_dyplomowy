@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component, EventEmitter, Output } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
+import { TranslocoModule } from '@jsverse/transloco';
 import { ScoreboardService } from '@pages/game-page/scoreboard.service';
 import { NumberToStringPipe } from '@shared/pipes/number-to-string.pipe';
 
@@ -11,6 +12,7 @@ import { NumberToStringPipe } from '@shared/pipes/number-to-string.pipe';
     CommonModule,
     NumberToStringPipe,
     MatButtonModule,
+    TranslocoModule
   ],
   templateUrl: './memory.component.html',
   styleUrl: './memory.component.scss',

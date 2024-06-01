@@ -1,10 +1,8 @@
-<div class="wrapper">
-  <h1>Hello in Memory!</h1>
-
+<div class="wrapper" *transloco="let t">
   <div class="level__picker__wrapper">
-    <button mat-button class="level__picker" (click)="start(1)">Easy</button>
-    <button mat-button class="level__picker" (click)="start(2)">Medium</button>
-    <button mat-button class="level__picker" (click)="start(3)">Hard</button>
+    <button mat-button class="level__picker" (click)="start(1)">{{t('levels.easy')}}</button>
+    <button mat-button class="level__picker" (click)="start(2)">{{t('levels.medium')}}</button>
+    <button mat-button class="level__picker" (click)="start(3)">{{t('levels.hard')}}</button>
   </div>
 
   @if (play) {
@@ -21,22 +19,22 @@
   <div class="messages">
     @if (play) {
       <span class="level__info">
-        Turn counter: {{ turns }} <br>
-        Time {{ minutes | number: '2.0' }}:{{ seconds | number: '2.0' }}
+        {{t('turns')}}: {{ turns }} <br>
+        {{t('time')}} {{ minutes | number: '2.0' }}:{{ seconds | number: '2.0' }}
       </span>
     }
     @if (isSuccess == 1) {
       <div class="success">
-        <h1>You WON</h1>
-        <span class="score">Your score {{ youScore }}</span>
-        <span>Your time {{ minutes | number: '2.0' }}:{{ seconds | number: '2.0' }}</span>
-        <span>Turns taken {{ turns }}</span>
-        <button mat-stroked-button class='reset' (click)="start()">Start again?</button>
+        <h1>{{t('youWon')}}</h1>
+        <span class="score">{{t('yourScore')}} {{ youScore }}</span>
+        <span>{{t('yourTime')}} {{ minutes | number: '2.0' }}:{{ seconds | number: '2.0' }}</span>
+        <span>{{t('turnsTaken')}} {{ turns }}</span>
+        <button mat-stroked-button class='reset' (click)="start()">{{t('startAgain')}}</button>
       </div>
     }
     @if (isSuccess == -1) {
-      <h1>You LOST</h1>
-      <button mat-stroked-button class='reset' (click)="start()">Start again?</button>
+      <h1>{{t('youLost')}}</h1>
+      <button mat-stroked-button class='reset' (click)="start()">{{t('startAgain')}}</button>
     }
   </div>
 </div>
