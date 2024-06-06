@@ -1,8 +1,8 @@
-<div class="wrapper" *transloco="let t">
-  <div class="wrapper__button">
+<div class="topbar__wrapper" *transloco="let t">
+  <div class="topbar__wrapper__button">
     <button mat-stroked-button [ngClass]="{'hidden': isHidden}" (click)="goBack()">{{t('goBack')}}</button>
   </div>
-  <div class="wrapper__button">
+  <div class="topbar__wrapper__button">
     <button mat-stroked-button (click)="changeLanguage()">{{t('changeLanguage')}}</button>
   </div>
 </div>

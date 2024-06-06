@@ -1,14 +1,18 @@
+@import 'src/styles/variables/palette.scss';
+
 :host {
   display: block;
 }
 
-.wrapper {
+.topbar__wrapper {
   display: flex;
   justify-content: space-between;
+  background-color: yellow;
+  padding: 20px;
+  margin: 0;
 
   &__button {
-    margin: 20px;
-
+    background-color: map-get($map: $pw-grey, $key: 200);
   }
 }
 

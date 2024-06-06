@@ -51,7 +51,8 @@
               "src/assets/images"
             ],
             "styles": [
-              "src/styles/styles.scss"
+              "src/styles/styles.scss",
+              "src/styles/variables/palette.scss"
             ],
             "scripts": []
           },
@@ -113,7 +114,8 @@
               "src/assets/images"
             ],
             "styles": [
-              "src/styles/styles.scss"
+              "src/styles/styles.scss",
+              "src/styles/variables/palette.scss"
             ],
             "stylePreprocessorOptions": {
               "includePaths": [
