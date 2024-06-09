@@ -1,4 +1,5 @@
 @import '../../../../styles/variables/palette.scss';
+@import '../../../../styles/variables/breakpoints';
 
 :host {
   display: block;
@@ -30,10 +31,21 @@
 }
 
 .title {
+  display: none;
   text-align: center;
   color: rgb(185, 255, 144);
-  font-size: 50px;
+  font-size: 20px;
   font-family: "Seymour One", sans-serif;
   word-spacing: 0.5cm;
+
+  @media (min-width: $screen-926) {
+    display: inline;
+    font-size: 30px;
+  }
+
+  @media (min-width: $screen-1440) {
+    display: inline;
+    font-size: 50px;
+  }
 }
 

@@ -1,3 +1,5 @@
+@import '../../../../../styles/variables/breakpoints';
+
 :host {
   display: block;
   text-align: center;
@@ -29,7 +31,7 @@
   padding: 20px;
   border: 10px solid transparent;
   border-image: url('/assets/images/memory_images/wall.jpg');
-  border-image-slice: 30; 
+  border-image-slice: 30;
   border-image-width: 10px;
   border-image-outset: 0;
   border-image-repeat: round;
@@ -42,8 +44,13 @@
 
 .image {
   cursor: pointer;
-  width: 100px;
-  height: 100px;
+  width: 80px;
+  height: 80px;
+
+  @media (min-width: $screen-926) {
+    width: 100px;
+    height: 100px;
+  }
 }
 
 .image:hover {
@@ -57,8 +64,13 @@
 .hidden {
   opacity: 0;
   cursor: auto;
-  width: 100px;
-  height: 100px;
+  width: 80px;
+  height: 80px;
+
+  @media (min-width: $screen-926) {
+    width: 100px;
+    height: 100px;
+  }
 }
 
 .messages {

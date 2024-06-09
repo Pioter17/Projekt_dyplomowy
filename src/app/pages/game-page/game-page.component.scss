@@ -1,20 +1,34 @@
+@import '../../../styles/variables/breakpoints';
+
 :host {
   display: block;
 }
 
 .wrapper {
-  width: 50%;
+  width: 95%;
   margin: auto;
   display: flex;
   flex-direction: column;
   gap: 30px;
   align-items: center;
-  margin-bottom: 100px;
+  margin-bottom: 20px;
   background-color: #ffebb2;
   border-radius: 0 0 50px 50px;
   border: 5px solid #74512D;
   border-top: 0px;
-  padding-bottom: 40px;
+  padding-bottom: 10px;
+
+  @media (min-width: $screen-926) {
+    width: 80%;
+    padding-bottom: 20px;
+    margin-bottom: 50px;
+  }
+
+  @media (min-width: $screen-1440) {
+    width: 60%;
+    padding-bottom: 40px;
+    margin-bottom: 100px;
+  }
 }
 
 .back {
@@ -30,9 +44,14 @@
 
 .buttons__wrapper {
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   gap: 20px;
+
+  @media (min-width: $screen-600) {
+    flex-direction: row;
+  }
 }
 
 .tab__button {
@@ -41,6 +60,23 @@
   height: 60px;
 }
 
+.scoreboard__wrapper {
+  width: 80%;
+  padding-bottom: 20px;
+
+  @media (min-width: $screen-720) {
+    width: 600px;
+  }
+}
+
 .tips__wrapper {
-  width: 60%;
+  width: 90%;
+
+  @media (min-width: $screen-600) {
+    width: 70%;
+  }
+
+  @media (min-width: $screen-1024) {
+    width: 60%;
+  }
 }

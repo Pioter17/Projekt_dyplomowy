@@ -1,3 +1,5 @@
+@import '../../../../../styles/variables/breakpoints';
+
 :host {
   display: block;
 }
@@ -9,13 +11,17 @@
 }
 
 .game__item {
-  width: 70%; 
-  margin: 2px; 
+  width: 80%;
+  margin: 2px;
   border: 0 solid transparent;
   transition: background-color 0.5s ease;
   border-radius: 20px;
+
+  @media (min-width: $screen-1024) {
+    width: 70%;
+  }
 }
-  
+
 .game__item:hover {
   margin: 0;
   background-color: #ffebb2;

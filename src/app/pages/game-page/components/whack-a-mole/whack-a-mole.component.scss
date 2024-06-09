@@ -1,3 +1,5 @@
+@import '../../../../../styles/variables/breakpoints';
+
 :host {
   display: block;
 }
@@ -7,6 +9,7 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  width: 100%;
 }
 
 .level__picker__wrapper {
@@ -21,21 +24,45 @@
 
 .board {
   display: grid;
-  gap: 10px;
-  grid-template-columns: repeat(6, 1fr);
+  gap: 5px;
+  width: 85vw;
+  grid-template-columns: repeat(4, 1fr);
   justify-items: center;
   align-items: center;
-  width: 700px;
-  padding: 30px;
+  padding: 10px;
   background-color: green;
   border-radius: 10px;
+
+  @media (min-width: $screen-600) {
+    grid-template-columns: repeat(6, 1fr);
+  }
+
+  @media (min-width: $screen-840) {
+    grid-template-columns: repeat(6, 1fr);
+    width: 70vw;
+  }
+
+  @media (min-width: $screen-1024) {
+    width: 700px;
+    padding: 30px;
+    gap: 10px;
+  }
 }
 
 .background {
-  flex-basis: calc(25% - 10px);
-  width: 100px;
-  height: 100px;
+  width: 60px;
+  height: 60px;
   margin: 5px;
+
+  @media (min-width: $screen-600) {
+    width: 75px;
+    height: 75px;
+  }
+
+  @media (min-width: $screen-1024) {
+    width: 100px;
+    height: 100px;
+  }
 }
 
 .hole {
@@ -45,7 +72,7 @@
   background-color: rgb(29, 29, 29);
   border: 3px solid black;
   }
-  
+
 .revealed__hole {
   background-color: yellow;
   cursor: pointer;
