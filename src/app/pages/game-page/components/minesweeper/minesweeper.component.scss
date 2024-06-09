@@ -19,6 +19,13 @@
   font-size: 20px;
 }
 
+.board {
+  padding: 40px;
+  background-color: aqua;
+  border: 5px solid #74512D;
+  border-radius: 10px;
+}
+
 .row {
   display: flex;
 }
@@ -46,7 +53,11 @@
 }
 
 .revealed {
-  background-color: grey;
+  background-color: rgb(67, 211, 75);
+}
+
+.water {
+  background-color: aqua;
 }
 
 .flag {

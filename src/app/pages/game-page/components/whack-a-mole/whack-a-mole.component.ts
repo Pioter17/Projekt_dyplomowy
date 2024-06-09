@@ -26,6 +26,7 @@ export class WhackAMoleComponent {
   gameLevel: number;
   maxTime: number;
   hideSpeed: number;
+  showSpeed: number;
   holes: number;
   play: boolean;
   isSuccess: number;
@@ -90,19 +91,22 @@ export class WhackAMoleComponent {
 
     switch (this.gameLevel) {
       case 1:
-        this.holes = 16;
+        this.holes = 18;
         this.maxTime = 30;
         this.hideSpeed = 2;
+        this.showSpeed = 500;
         break
       case 2:
         this.holes = 24;
         this.maxTime = 30;
         this.hideSpeed = 1.5;
+        this.showSpeed = 400;
         break
       case 3:
         this.holes = 24;
         this.maxTime = 20;
-        this.hideSpeed = 1;
+        this.hideSpeed = 0.8;
+        this.showSpeed = 300;
     }
     this.resetTimer();
     this.startTimer();
@@ -121,7 +125,7 @@ export class WhackAMoleComponent {
         this.hideMole(rand);
       }
       this.cdr.detectChanges();
-    }, 500);
+    }, this.showSpeed);
   }
 
   hideMole(moleId: number) {
@@ -131,8 +135,10 @@ export class WhackAMoleComponent {
   }
 
   whack(moleId: number) {
-    this.holesIds[moleId] = 0;
-    this.points++;
+    if (this.holesIds[moleId] == 1) {
+      this.holesIds[moleId] = 0;
+      this.points++;
+    }
   }
 
   countScore() {

@@ -10,7 +10,11 @@
   gap: 30px;
   align-items: center;
   margin-bottom: 100px;
-  background-color: aqua;
+  background-color: #ffebb2;
+  border-radius: 0 0 50px 50px;
+  border: 5px solid #74512D;
+  border-top: 0px;
+  padding-bottom: 40px;
 }
 
 .back {
@@ -33,10 +37,10 @@
 
 .tab__button {
   font-size: 18px;
-  width: 140px;
+  width: 200px;
   height: 60px;
 }
 
 .tips__wrapper {
-  width: 40%;
+  width: 60%;
 }

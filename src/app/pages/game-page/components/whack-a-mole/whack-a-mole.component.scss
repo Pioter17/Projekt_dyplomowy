@@ -20,15 +20,21 @@
 }
 
 .board {
-  display: flex;
-  flex-wrap: wrap;
-  width: 500px;
+  display: grid;
+  gap: 10px;
+  grid-template-columns: repeat(6, 1fr);
+  justify-items: center;
+  align-items: center;
+  width: 700px;
+  padding: 30px;
+  background-color: green;
+  border-radius: 10px;
 }
 
 .background {
-  background-color: blue;
-  width: 50px;
-  height: 50px;
+  flex-basis: calc(25% - 10px);
+  width: 100px;
+  height: 100px;
   margin: 5px;
 }
 
@@ -36,12 +42,13 @@
   width: inherit;
   height: inherit;
   border-radius: 50%;
-  background-color: red;
-  cursor: pointer;
-}
-
+  background-color: rgb(29, 29, 29);
+  border: 3px solid black;
+  }
+  
 .revealed__hole {
-  background-color: black;
+  background-color: yellow;
+  cursor: pointer;
 }
 
 .messages {

@@ -9,7 +9,7 @@
   },
   "goBack": "Go back",
   "changeLanguage": "Change language",
-  "welcomeGame": "Welcome to the game '{{name}}'",
+  "welcomeGame": "Welcome to the game {{name}}",
   "game": "Game",
   "scoreboard": "Scoreboard",
   "howToPlay": "How to play?",

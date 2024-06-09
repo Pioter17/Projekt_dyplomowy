@@ -4,15 +4,19 @@
     <button mat-button class="level__picker" (click)="start(2)">{{t('levels.medium')}}</button>
     <button mat-button class="level__picker" (click)="start(3)">{{t('levels.hard')}}</button>
   </div>
-  @for (row of fields; track row; let rowIndex = $index) {
-    <div class="row">
-      @for (col of row; track col; let colIndex = $index) {
-        <div
-          [class]="'field ' + (hiddenFields[rowIndex][colIndex] == 1 ? 'hidden' : hiddenFields[rowIndex][colIndex] == -1 ? 'flag' : 'revealed') + ((isSuccess == -1 && fields[rowIndex][colIndex] == -1) ? ' bomb' : '')"
-          (click)="revealField(rowIndex, colIndex)"
-          (contextmenu)="setFlag(rowIndex, colIndex, $event)"
-        >
-          {{ hiddenFields[rowIndex][colIndex] == 1 ? "" : hiddenFields[rowIndex][colIndex] == -1 ? "" : col > 0 ? col : "" }}
+  @if (play || isSuccess != 0) {
+    <div class="board">
+      @for (row of fields; track row; let rowIndex = $index) {
+        <div class="row">
+          @for (col of row; track col; let colIndex = $index) {
+            <div
+              [class]="'field ' + (hiddenFields[rowIndex][colIndex] == 1 ? 'hidden' : hiddenFields[rowIndex][colIndex] == -1 ? 'flag' : col > 0 ? 'revealed' : 'water') + ((isSuccess == -1 && fields[rowIndex][colIndex] == -1) ? ' bomb' : '')"
+              (click)="revealField(rowIndex, colIndex)"
+              (contextmenu)="setFlag(rowIndex, colIndex, $event)"
+            >
+              {{ hiddenFields[rowIndex][colIndex] == 1 ? "" : hiddenFields[rowIndex][colIndex] == -1 ? "" : col > 0 ? col : "" }}
+            </div>
+          }
         </div>
       }
     </div>

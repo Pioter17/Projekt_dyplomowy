@@ -27,7 +27,7 @@ export class MinesweeperComponent {
   ) { }
 
   play: boolean;
-  isSuccess: number;
+  isSuccess: number = 0;
   range: number; // The number of all fields
   rows: number;
   columns: number;
