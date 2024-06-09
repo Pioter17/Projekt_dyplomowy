@@ -1,13 +1,16 @@
+@import '../../../styles/variables/palette.scss';
+
 :host {
   display: block;
 }
 
 .wrapper {
-  width: 70%;
+  height: 100%;
+  width: 50%;
   margin: auto;
-  background-color: blue;
-}
-
-.title {
-  text-align: center;
+  padding: 20px;
+  background-color: #ADD899;
+  border-radius: 0 0 50px 50px;
+  border: 5px solid #2b823e;
+  border-top: 0px;
 }

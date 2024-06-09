@@ -3,12 +3,14 @@
 }
 
 .wrapper {
-  width: 100%;
+  width: 50%;
+  margin: auto;
   display: flex;
   flex-direction: column;
   gap: 30px;
   align-items: center;
   margin-bottom: 100px;
+  background-color: aqua;
 }
 
 .back {

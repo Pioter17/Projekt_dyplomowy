@@ -9,7 +9,7 @@
   },
   "goBack": "Wróć",
   "changeLanguage": "Zmień język",
-  "welcomeGame": "Witaj w {{name}}",
+  "welcomeGame": "Witaj w grze '{{name}}'",
   "game": "Gra",
   "scoreboard": "Tablica wyników",
   "howToPlay": "Jak grać?",

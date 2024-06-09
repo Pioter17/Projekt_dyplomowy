@@ -1,5 +1,5 @@
 <div class="wrapper" *transloco="let t">
-  <h1 class="title">{{ t('welcomeGame', {name: gameName}) }}</h1>
+  <h1 class="title">{{ t('welcomeGame', {name: t('games.'+gameName)}) }}</h1>
   <div class="buttons__wrapper">
     <button class="tab__button" mat-raised-button (click)="isGame = true" [disabled]="isGame">{{t('game')}}</button>
     <button class="tab__button" mat-raised-button (click)="isGame = false" [disabled]="!isGame">{{t('scoreboard')}}</button>

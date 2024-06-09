@@ -1,21 +1,39 @@
-@import 'src/styles/variables/palette.scss';
+@import '../../../../styles/variables/palette.scss';
 
 :host {
   display: block;
 }
 
 .topbar__wrapper {
+  height: 50px;
   display: flex;
   justify-content: space-between;
-  background-color: yellow;
-  padding: 20px;
+  background-color: map-get($map: $pw-primary, $key: 900);
+  padding: 25px;
+  align-items: center;
+
   margin: 0;
 
   &__button {
-    background-color: map-get($map: $pw-grey, $key: 200);
+    width: 160px;
+    background-color: map-get($map: $pw-grey, $key: 100);
+    border-radius: 5px;
+
+    &__element {
+      width: 100%;
+    }
   }
 }
 
 .hidden {
   display: none;
 }
+
+.title {
+  text-align: center;
+  color: rgb(185, 255, 144);
+  font-size: 50px;
+  font-family: "Seymour One", sans-serif;
+  word-spacing: 0.5cm;
+}
+
