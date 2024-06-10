@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { ChangeDetectionStrategy, ChangeDetectorRef, Component, EventEmitter, Output } from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, EventEmitter, HostListener, Output } from '@angular/core';
 import { Cords } from '@pages/game-page/interfaces/minesweeper.interface';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
@@ -43,6 +43,29 @@ export class MinesweeperComponent {
   interval: any;
   youScore: number;
   @Output() score = new EventEmitter<number>();
+
+  @HostListener('window:resize', ['$event'])
+  onResize(event: any): void {
+    const width = event.target.innerWidth;
+    if ((width < 840 && this.rows < this.columns) || (width >= 840 && this.rows > this.columns)) {
+      this.transposeBoard();
+      this.cdr.detectChanges();
+    }
+  }
+
+  transposeBoard() {
+    const transpose = (matrix: number[][]): number[][] => {
+      return matrix[0].map((_, colIndex) => matrix.map(row => row[colIndex]));
+    };
+
+    this.fields = transpose(this.fields);
+    this.hiddenFields = transpose(this.hiddenFields);
+
+    // Zamień wymiary rows i columns
+    const temp = this.columns;
+    this.columns = this.rows;
+    this.rows = temp;
+  }
 
   start(level?: number) {
     this.play = true;
@@ -115,6 +138,11 @@ export class MinesweeperComponent {
     this.hiddenLeft = this.range - this.bombs;
 
     this.fields = this.drawBombs(this.fields, this.bombs);
+    const width = window.innerWidth;
+    if ((width < 840 && this.rows < this.columns) || (width >= 840 && this.rows > this.columns)) {
+      this.transposeBoard();
+      this.cdr.detectChanges();
+    }
   }
 
   drawBombs(array: number[][], bombs: number) {
