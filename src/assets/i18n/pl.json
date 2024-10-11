@@ -5,6 +5,7 @@
     "memory": "Memory",
     "mastermind": "Mastermind",
     "whack-a-mole": "Zbij Kreta",
+    "combinations": "Kombinacje",
     "try": "Spróbuj!"
   },
   "goBack": "Wróć",
@@ -28,6 +29,7 @@
   "yourTime": "Twój czas",
   "youWon": "Wygrałeś",
   "youLost": "Przegrałeś",
+  "gameOver": "Koniec gry",
   "startAgain": "Zacząć od nowa?",
   "mastermindError": "Musisz najpierw zmienić kolor każdej kulki",
   "check": "Sprawdź",
@@ -68,5 +70,11 @@
     "2": "Kliknij na czarne kółko tak szybko, jak możesz",
     "3": "Masz ograniczony czas",
     "4": "Na trudniejszych poziomach czas jest krótszy, a prędkość ukrywania kretów jest szybsza, ale otrzymujesz też więcej punktów"
+  },
+  "combinationsTips": {
+    "1": "Oto podstawy gry:",
+    "2": "Na początku wyświetli się kombinacja, którą musisz zapamiętać",
+    "3": "Gdy zegar wystartuje musisz powtórzyć zadaną kombinację klikając w odpowiednie kafelki",
+    "4": "Gdy czas się skończy lub pomylisz kafelki gra się kończy"
   }
 }

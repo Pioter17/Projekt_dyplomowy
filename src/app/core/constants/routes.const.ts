@@ -7,5 +7,6 @@ export const RoutesPath = {
   DASHBOARD: 'dashboard',
   MEMORY: 'memory',
   MINESWEEPER: 'minesweeper',
+  COMBINATIONS: 'combinations',
   GAMES: 'games',
-}
+};

@@ -1,5 +1,11 @@
 import { CommonModule } from '@angular/common';
-import { ChangeDetectionStrategy, ChangeDetectorRef, Component, EventEmitter, Output } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  ChangeDetectorRef,
+  Component,
+  EventEmitter,
+  Output,
+} from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { TranslocoModule } from '@jsverse/transloco';
 import { ScoreboardService } from '@pages/game-page/scoreboard.service';
@@ -8,12 +14,7 @@ import { NumberToStringPipe } from '@shared/pipes/number-to-string.pipe';
 @Component({
   selector: 'pw-memory',
   standalone: true,
-  imports: [
-    CommonModule,
-    NumberToStringPipe,
-    MatButtonModule,
-    TranslocoModule
-  ],
+  imports: [CommonModule, NumberToStringPipe, MatButtonModule, TranslocoModule],
   templateUrl: './memory.component.html',
   styleUrl: './memory.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -21,8 +22,8 @@ import { NumberToStringPipe } from '@shared/pipes/number-to-string.pipe';
 export class MemoryComponent {
   constructor(
     private cdr: ChangeDetectorRef,
-    private scoreService: ScoreboardService,
-  ) { }
+    private scoreService: ScoreboardService
+  ) {}
 
   play: boolean;
   isSuccess: number;
@@ -31,7 +32,7 @@ export class MemoryComponent {
   seconds: number = 0;
   isRunning: boolean = false;
   interval: any;
-  youScore: number;
+  yourScore: number;
   cards: number;
   lock = false;
   oneVisible = false;
@@ -89,13 +90,13 @@ export class MemoryComponent {
 
     switch (this.gameLevel) {
       case 1:
-        this.cards = 8
-        break
+        this.cards = 8;
+        break;
       case 2:
-        this.cards = 14
-        break
+        this.cards = 14;
+        break;
       case 3:
-        this.cards = 19
+        this.cards = 19;
     }
 
     this.cardsOrder = Array.from({ length: this.cards * 2 }, () => 0);
@@ -107,7 +108,7 @@ export class MemoryComponent {
     let rand: number;
 
     while (i < pairs_nr) {
-      rand = Math.floor(Math.random()*this.cards*2);
+      rand = Math.floor(Math.random() * this.cards * 2);
       if (this.cardsOrder[rand] == 0) {
         this.cardsOrder[rand] = i;
 
@@ -148,8 +149,8 @@ export class MemoryComponent {
         }
         this.secondNr = nr;
 
-        if(this.cardsOrder[this.firstNr] == this.cardsOrder[this.secondNr]) {
-          setTimeout(() => this.hide2Cards(this.firstNr, nr) , 300);
+        if (this.cardsOrder[this.firstNr] == this.cardsOrder[this.secondNr]) {
+          setTimeout(() => this.hide2Cards(this.firstNr, nr), 300);
         } else {
           setTimeout(() => this.restore2Cards(), 300);
         }
@@ -183,8 +184,18 @@ export class MemoryComponent {
   }
 
   countScore() {
-    this.youScore = Math.pow(10, this.gameLevel+3)-Math.floor(this.minutes*6*Math.pow(10, this.gameLevel+1)/(this.gameLevel+3))-Math.floor(this.seconds*Math.pow(10, this.gameLevel+1)/(this.gameLevel+3))-Math.floor(this.turns*Math.pow(10, this.gameLevel+1)/this.gameLevel)
-    this.scoreService.updateScores(this.youScore);
+    this.yourScore =
+      Math.pow(10, this.gameLevel + 3) -
+      Math.floor(
+        (this.minutes * 6 * Math.pow(10, this.gameLevel + 1)) /
+          (this.gameLevel + 3)
+      ) -
+      Math.floor(
+        (this.seconds * Math.pow(10, this.gameLevel + 1)) / (this.gameLevel + 3)
+      ) -
+      Math.floor(
+        (this.turns * Math.pow(10, this.gameLevel + 1)) / this.gameLevel
+      );
+    this.scoreService.updateScores(this.yourScore);
   }
 }
-

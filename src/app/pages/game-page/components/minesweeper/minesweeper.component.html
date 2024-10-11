@@ -33,7 +33,7 @@
     }
     @if (isSuccess == 1) {
       <h1>{{t('youWon')}}</h1>
-      <h3>{{t('yourScore')}} {{ youScore }}</h3>
+      <h3>{{t('yourScore')}} {{ yourScore }}</h3>
       <h4>{{t('yourTime')}} {{ minutes | number: '2.0' }}:{{ seconds | number: '2.0' }}</h4>
       <button mat-stroked-button class='reset' (click)="start()">{{t('startAgain')}}</button>
     }

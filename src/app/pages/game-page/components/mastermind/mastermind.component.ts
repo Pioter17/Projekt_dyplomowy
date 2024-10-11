@@ -26,7 +26,7 @@ export class MastermindComponent {
   isRunning: boolean = false;
   timeInterval: any;
   turns: number;
-  youScore: number;
+  yourScore: number;
   maxColors: number;
   hiddenBallsColors: number[];
   visibleBallsColors: number[];
@@ -159,14 +159,14 @@ export class MastermindComponent {
   }
 
   countScore() {
-    this.youScore = Math.pow(10, this.gameLevel+3)
+    this.yourScore = Math.pow(10, this.gameLevel+3)
                     -Math.floor(this.minutes*6*Math.pow(10, this.gameLevel+1)/(this.gameLevel+3))
                     -Math.floor(this.seconds*Math.pow(10, this.gameLevel+1)/(this.gameLevel+3))
                     -Math.floor(this.turns*3*Math.pow(10,this.gameLevel+1)/(this.gameLevel+3));
 
-    if (this.youScore > 1000000) {
-      this.youScore = 1000000;
+    if (this.yourScore > 1000000) {
+      this.yourScore = 1000000;
     }
-    this.scoreService.updateScores(this.youScore);
+    this.scoreService.updateScores(this.yourScore);
   }
 }

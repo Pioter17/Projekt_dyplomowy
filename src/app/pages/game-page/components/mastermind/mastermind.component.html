@@ -6,50 +6,50 @@
   </div>
 
   @if (play || isSuccess == 1) {
-    <div class="board">
-      <div class="historical">
-        @for (historicRow of historicColors; track $index) {
-          <div class="ball__row">
-            @for (historicBall of historicRow; track $index) {
-              <div [class]="'ball __' + historicBall + ' historic'"></div>
-            }
-          </div>
-          }
-          @if (wrongColorsError) {
-            <div class="error">
-              {{t('mastermindError')}}
-            </div>
-          }
+  <div class="board">
+    <div class="historical">
+      @for (historicRow of historicColors; track $index) {
+      <div class="ball__row">
+        @for (historicBall of historicRow; track $index) {
+        <div [class]="'ball __' + historicBall + ' historic'"></div>
+        }
       </div>
-      <div class="actual">
-        <div class="ball__row">
-          @for (ball of visibleBallsColors; track $index) {
-            <div [class]="'ball __' + ball" (click)="changeColor($index)"></div>
-          }
-        </div>
-        <div class="check">
-          <button mat-flat-button (click)="check()">
-            {{t('check')}}
-          </button>
-        </div>
+      }
+      @if (wrongColorsError) {
+      <div class="error">
+        {{t('mastermindError')}}
+      </div>
+      }
+    </div>
+    <div class="actual">
+      <div class="ball__row">
+        @for (ball of visibleBallsColors; track $index) {
+        <div [class]="'ball __' + ball" (click)="changeColor($index)"></div>
+        }
+      </div>
+      <div class="check">
+        <button mat-flat-button (click)="check()">
+          {{t('check')}}
+        </button>
       </div>
     </div>
+  </div>
   }
 
   <div class="messages">
     @if (play) {
-      <span class="level__info">
-        {{t('turns')}}: {{ turns }}
-      </span>
-      <span class="level__info">
-        {{t('time')}}: 0:{{ seconds | number: '2.0' }}
-      </span>
+    <span class="level__info">
+      {{t('turns')}}: {{ turns }}
+    </span>
+    <span class="level__info">
+      {{t('time')}}: 0:{{ seconds | number: '2.0' }}
+    </span>
     }
     @if (isSuccess == 1) {
-      <h1>{{t('youWon')}}</h1>
-      <h3>{{t('score')}} {{ youScore }}</h3>
-      <h4>{{t('yourTime')}} {{ minutes | number: '2.0' }}:{{ seconds | number: '2.0' }}</h4>
-      <button mat-stroked-button class='reset' (click)="start()">{{t('startAgain')}}</button>
+    <h1>{{t('youWon')}}</h1>
+    <h3>{{t('score')}} {{ yourScore }}</h3>
+    <h4>{{t('yourTime')}} {{ minutes | number: '2.0' }}:{{ seconds | number: '2.0' }}</h4>
+    <button mat-stroked-button class='reset' (click)="start()">{{t('startAgain')}}</button>
     }
   </div>
 </div>

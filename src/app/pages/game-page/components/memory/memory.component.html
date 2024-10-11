@@ -6,35 +6,33 @@
   </div>
 
   @if (play) {
-    <div class="board">
-      @for (item of cardsOrder; track $index) {
-        <img
-        [src]="'/assets/images/memory_images/'+(firstNr == $index  ? item : secondNr == $index ? item : '0') +'.png'"
-        (click)="reveal_card($index)"
-        [class]="(hidden[$index] == 1 ? 'hidden ' : 'image ') + (firstNr == $index  ? 'revealed' : secondNr == $index ? 'revealed' : '')"
-        >
-      }
-    </div>
+  <div class="board">
+    @for (item of cardsOrder; track $index) {
+    <img [src]="'/assets/images/memory_images/'+(firstNr == $index  ? item : secondNr == $index ? item : '0') +'.png'"
+      (click)="reveal_card($index)"
+      [class]="(hidden[$index] == 1 ? 'hidden ' : 'image ') + (firstNr == $index  ? 'revealed' : secondNr == $index ? 'revealed' : '')">
+    }
+  </div>
   }
   <div class="messages">
     @if (play) {
-      <span class="level__info">
-        {{t('turns')}}: {{ turns }} <br>
-        {{t('time')}} {{ minutes | number: '2.0' }}:{{ seconds | number: '2.0' }}
-      </span>
+    <span class="level__info">
+      {{t('turns')}}: {{ turns }} <br>
+      {{t('time')}} {{ minutes | number: '2.0' }}:{{ seconds | number: '2.0' }}
+    </span>
     }
     @if (isSuccess == 1) {
-      <div class="success">
-        <h1>{{t('youWon')}}</h1>
-        <span class="score">{{t('yourScore')}} {{ youScore }}</span>
-        <span>{{t('yourTime')}} {{ minutes | number: '2.0' }}:{{ seconds | number: '2.0' }}</span>
-        <span>{{t('turnsTaken')}} {{ turns }}</span>
-        <button mat-stroked-button class='reset' (click)="start()">{{t('startAgain')}}</button>
-      </div>
+    <div class="success">
+      <h1>{{t('youWon')}}</h1>
+      <span class="score">{{t('yourScore')}} {{ yourScore }}</span>
+      <span>{{t('yourTime')}} {{ minutes | number: '2.0' }}:{{ seconds | number: '2.0' }}</span>
+      <span>{{t('turnsTaken')}} {{ turns }}</span>
+      <button mat-stroked-button class='reset' (click)="start()">{{t('startAgain')}}</button>
+    </div>
     }
     @if (isSuccess == -1) {
-      <h1>{{t('youLost')}}</h1>
-      <button mat-stroked-button class='reset' (click)="start()">{{t('startAgain')}}</button>
+    <h1>{{t('youLost')}}</h1>
+    <button mat-stroked-button class='reset' (click)="start()">{{t('startAgain')}}</button>
     }
   </div>
 </div>

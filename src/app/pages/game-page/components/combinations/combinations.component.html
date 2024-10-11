@@ -1,0 +1,37 @@
+<div class="wrapper" *transloco="let t">
+	<div class="level__picker__wrapper">
+		<button mat-button class="level__picker" (click)="start(1)">{{t('levels.easy')}}</button>
+		<button mat-button class="level__picker" (click)="start(2)">{{t('levels.medium')}}</button>
+		<button mat-button class="level__picker" (click)="start(3)">{{t('levels.hard')}}</button>
+	</div>
+
+	@if (play) {
+	<div class="board">
+		@for (item of boardArray; track $index) {
+		<img class="image" [class]="currentStep == $index ? 'active' : ''"
+			[src]="'/assets/images/memory_images/'+ item +'.png'" (click)="checkStep($index)">
+		}
+	</div>
+	}
+	<div class="messages">
+		@if (play) {
+		<span class="level__info">
+			{{t('turns')}}: {{ turns }} <br>
+			{{t('time')}} {{ minutes | number: '2.0' }}:{{ seconds | number: '2.0' }}
+		</span>
+		}
+		@if (isSuccess == 1) {
+		<div class="success">
+			<h1>{{t('youWon')}}</h1>
+			<span class="score">{{t('yourScore')}} {{ yourScore }}</span>
+			<span>{{t('turnsTaken')}} {{ turns }}</span>
+			<button mat-stroked-button class='reset' (click)="start()">{{t('startAgain')}}</button>
+		</div>
+		}
+		@if (isSuccess == -1) {
+		<h1>{{t('gameOver')}}</h1>
+		<span class="score">{{t('yourScore')}} {{ yourScore }}</span>
+		<button mat-stroked-button class='reset' (click)="start()">{{t('startAgain')}}</button>
+		}
+	</div>
+</div>

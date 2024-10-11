@@ -1,5 +1,12 @@
 import { CommonModule } from '@angular/common';
-import { ChangeDetectionStrategy, ChangeDetectorRef, Component, EventEmitter, HostListener, Output } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  ChangeDetectorRef,
+  Component,
+  EventEmitter,
+  HostListener,
+  Output,
+} from '@angular/core';
 import { Cords } from '@pages/game-page/interfaces/minesweeper.interface';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
@@ -9,22 +16,16 @@ import { TranslocoModule } from '@jsverse/transloco';
 @Component({
   selector: 'pw-minesweeper',
   standalone: true,
-  imports: [
-    CommonModule,
-    MatIconModule,
-    MatButtonModule,
-    TranslocoModule
-  ],
+  imports: [CommonModule, MatIconModule, MatButtonModule, TranslocoModule],
   templateUrl: './minesweeper.component.html',
   styleUrl: './minesweeper.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class MinesweeperComponent {
-
   constructor(
     private cdr: ChangeDetectorRef,
-    private scoreService: ScoreboardService,
-  ) { }
+    private scoreService: ScoreboardService
+  ) {}
 
   play: boolean;
   isSuccess: number = 0;
@@ -41,13 +42,16 @@ export class MinesweeperComponent {
   seconds: number = 0;
   isRunning: boolean = false;
   interval: any;
-  youScore: number;
+  yourScore: number;
   @Output() score = new EventEmitter<number>();
 
   @HostListener('window:resize', ['$event'])
   onResize(event: any): void {
     const width = event.target.innerWidth;
-    if ((width < 840 && this.rows < this.columns) || (width >= 840 && this.rows > this.columns)) {
+    if (
+      (width < 840 && this.rows < this.columns) ||
+      (width >= 840 && this.rows > this.columns)
+    ) {
       this.transposeBoard();
       this.cdr.detectChanges();
     }
@@ -55,7 +59,7 @@ export class MinesweeperComponent {
 
   transposeBoard() {
     const transpose = (matrix: number[][]): number[][] => {
-      return matrix[0].map((_, colIndex) => matrix.map(row => row[colIndex]));
+      return matrix[0].map((_, colIndex) => matrix.map((row) => row[colIndex]));
     };
 
     this.fields = transpose(this.fields);
@@ -118,13 +122,13 @@ export class MinesweeperComponent {
         this.rows = 10;
         this.columns = 10;
         bombsPercent = 10;
-        break
+        break;
       case 2:
         this.range = 200;
         this.rows = 10;
         this.columns = 20;
         bombsPercent = 14;
-        break
+        break;
       case 3:
         this.range = 400;
         this.rows = 16;
@@ -132,14 +136,21 @@ export class MinesweeperComponent {
         bombsPercent = 17;
     }
 
-    this.fields = Array.from({ length: this.rows }, () => Array.from({ length: this.columns }, () => 0));
-    this.hiddenFields = Array.from({ length: this.rows }, () => Array.from({ length: this.columns }, () => 1));
+    this.fields = Array.from({ length: this.rows }, () =>
+      Array.from({ length: this.columns }, () => 0)
+    );
+    this.hiddenFields = Array.from({ length: this.rows }, () =>
+      Array.from({ length: this.columns }, () => 1)
+    );
     this.bombs = Math.floor(this.range * (bombsPercent / 100));
     this.hiddenLeft = this.range - this.bombs;
 
     this.fields = this.drawBombs(this.fields, this.bombs);
     const width = window.innerWidth;
-    if ((width < 840 && this.rows < this.columns) || (width >= 840 && this.rows > this.columns)) {
+    if (
+      (width < 840 && this.rows < this.columns) ||
+      (width >= 840 && this.rows > this.columns)
+    ) {
       this.transposeBoard();
       this.cdr.detectChanges();
     }
@@ -151,12 +162,12 @@ export class MinesweeperComponent {
 
     let j = 0;
     while (j < bombs) {
-        const randomRow = Math.floor(Math.random() * rows);
-        const randomCol = Math.floor(Math.random() * cols);
-        if (array[randomRow][randomCol] !== -1) {
-            array[randomRow][randomCol] = -1;
-            j++;
-        }
+      const randomRow = Math.floor(Math.random() * rows);
+      const randomCol = Math.floor(Math.random() * cols);
+      if (array[randomRow][randomCol] !== -1) {
+        array[randomRow][randomCol] = -1;
+        j++;
+      }
     }
 
     for (let row = 0; row < rows; row++) {
@@ -166,7 +177,13 @@ export class MinesweeperComponent {
         let bombyNeighbours = 0;
         for (let r = row - 1; r <= row + 1; r++) {
           for (let c = col - 1; c <= col + 1; c++) {
-            if (r >= 0 && r < rows && c >= 0 && c < cols && array[r][c] === -1) {
+            if (
+              r >= 0 &&
+              r < rows &&
+              c >= 0 &&
+              c < cols &&
+              array[r][c] === -1
+            ) {
               bombyNeighbours++;
             }
           }
@@ -185,13 +202,10 @@ export class MinesweeperComponent {
       return;
     }
 
-    if (this.hiddenFields[rowId][colId] == -1)
-    {
+    if (this.hiddenFields[rowId][colId] == -1) {
       this.hiddenFields[rowId][colId] = 1;
       this.flags--;
-    }
-    else if (this.hiddenFields[rowId][colId] == 1)
-    {
+    } else if (this.hiddenFields[rowId][colId] == 1) {
       this.hiddenFields[rowId][colId] = -1;
       this.flags++;
     }
@@ -203,8 +217,8 @@ export class MinesweeperComponent {
         if (field == -1) {
           this.hiddenFields[rowId][colId] = 0;
         }
-      })
-    })
+      });
+    });
   }
 
   revealField(rowId: number, colId: number) {
@@ -251,10 +265,16 @@ export class MinesweeperComponent {
       for (let colOffset = -1; colOffset <= 1; colOffset++) {
         const newRow = rowId + rowOffset;
         const newCol = colId + colOffset;
-        if (newRow >= 0 && newRow < rows && newCol >= 0 && newCol < cols && this.hiddenFields[newRow][newCol] == 1) {
+        if (
+          newRow >= 0 &&
+          newRow < rows &&
+          newCol >= 0 &&
+          newCol < cols &&
+          this.hiddenFields[newRow][newCol] == 1
+        ) {
           this.hiddenFields[newRow][newCol] = 0;
           this.hiddenLeft--;
-          neighbours.push({rowId: newRow, colId: newCol});
+          neighbours.push({ rowId: newRow, colId: newCol });
         }
       }
     }
@@ -266,16 +286,24 @@ export class MinesweeperComponent {
     });
 
     newNeighbours.forEach((cord: Cords) => {
-      if (!neighbours.includes({rowId: cord.rowId, colId: cord.colId})) {
-        neighbours.push({rowId: cord.rowId, colId: cord.colId});
+      if (!neighbours.includes({ rowId: cord.rowId, colId: cord.colId })) {
+        neighbours.push({ rowId: cord.rowId, colId: cord.colId });
       }
-    })
+    });
 
     return neighbours;
   }
 
   countScore() {
-    this.youScore = Math.pow(10, this.gameLevel+3)-Math.floor(this.minutes*6*Math.pow(10, this.gameLevel+1)/(this.gameLevel+3))-Math.floor(this.seconds*Math.pow(10, this.gameLevel+1)/(this.gameLevel+3))
-    this.scoreService.updateScores(this.youScore);
+    this.yourScore =
+      Math.pow(10, this.gameLevel + 3) -
+      Math.floor(
+        (this.minutes * 6 * Math.pow(10, this.gameLevel + 1)) /
+          (this.gameLevel + 3)
+      ) -
+      Math.floor(
+        (this.seconds * Math.pow(10, this.gameLevel + 1)) / (this.gameLevel + 3)
+      );
+    this.scoreService.updateScores(this.yourScore);
   }
 }

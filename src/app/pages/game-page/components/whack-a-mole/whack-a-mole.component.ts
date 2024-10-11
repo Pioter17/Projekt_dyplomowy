@@ -1,5 +1,11 @@
 import { CommonModule } from '@angular/common';
-import { ChangeDetectionStrategy, ChangeDetectorRef, Component, EventEmitter, Output } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  ChangeDetectorRef,
+  Component,
+  EventEmitter,
+  Output,
+} from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { TranslocoModule } from '@jsverse/transloco';
 import { ScoreboardService } from '@pages/game-page/scoreboard.service';
@@ -7,21 +13,16 @@ import { ScoreboardService } from '@pages/game-page/scoreboard.service';
 @Component({
   selector: 'pw-whack-a-mole',
   standalone: true,
-  imports: [
-    CommonModule,
-    MatButtonModule,
-    TranslocoModule
-  ],
+  imports: [CommonModule, MatButtonModule, TranslocoModule],
   templateUrl: './whack-a-mole.component.html',
   styleUrl: './whack-a-mole.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class WhackAMoleComponent {
-
   constructor(
     private cdr: ChangeDetectorRef,
-    private scoreService: ScoreboardService,
-  ) { }
+    private scoreService: ScoreboardService
+  ) {}
 
   gameLevel: number;
   maxTime: number;
@@ -36,7 +37,7 @@ export class WhackAMoleComponent {
   showInterval: any;
   hideTimeout: any;
   points: number;
-  youScore: number;
+  yourScore: number;
   holesIds: number[];
   @Output() score = new EventEmitter<number>();
 
@@ -95,13 +96,13 @@ export class WhackAMoleComponent {
         this.maxTime = 30;
         this.hideSpeed = 2;
         this.showSpeed = 500;
-        break
+        break;
       case 2:
         this.holes = 24;
         this.maxTime = 30;
         this.hideSpeed = 1.5;
         this.showSpeed = 400;
-        break
+        break;
       case 3:
         this.holes = 24;
         this.maxTime = 20;
@@ -119,7 +120,7 @@ export class WhackAMoleComponent {
   showMole() {
     let rand: number;
     this.showInterval = setInterval(() => {
-      rand = Math.floor(Math.random()*this.holes);
+      rand = Math.floor(Math.random() * this.holes);
       if (this.holesIds[rand] == 0) {
         this.holesIds[rand] = 1;
         this.hideMole(rand);
@@ -131,7 +132,7 @@ export class WhackAMoleComponent {
   hideMole(moleId: number) {
     this.hideTimeout = setTimeout(() => {
       this.holesIds[moleId] = 0;
-    }, this.hideSpeed * 1000)
+    }, this.hideSpeed * 1000);
   }
 
   whack(moleId: number) {
@@ -142,7 +143,7 @@ export class WhackAMoleComponent {
   }
 
   countScore() {
-    this.youScore = Math.floor(6000 * this.gameLevel * this.points)
-    this.scoreService.updateScores(this.youScore);
+    this.yourScore = Math.floor(6000 * this.gameLevel * this.points);
+    this.scoreService.updateScores(this.yourScore);
   }
 }

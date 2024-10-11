@@ -5,6 +5,7 @@
     "memory": "Memory",
     "mastermind": "Mastermind",
     "whack-a-mole": "Whack-a-mole",
+    "combinations": "Combinations",
     "try": "Try it!"
   },
   "goBack": "Go back",
@@ -28,6 +29,7 @@
   "yourTime": "Your time",
   "youWon": "You won",
   "youLost": "You lost",
+  "gameOver": "Game over",
   "startAgain": "Start again?",
   "mastermindError": "You have to change color of every ball first",
   "check": "Check",
@@ -68,5 +70,11 @@
     "2": "Click on the black circle as fast as you can",
     "3": "You have limited time",
     "4": "On harder levels time is shorter and the moles' hide speed is faster, but you also get more points"
+  },
+  "combinationsTips": {
+    "1": "Here are game fundamentals:",
+    "2": "First you will see the combination you need to remember",
+    "3": "When the clock starts you have to repeat combination by clicking on right images",
+    "4": "When the time is up or you missorder images the game is over"
   }
 }

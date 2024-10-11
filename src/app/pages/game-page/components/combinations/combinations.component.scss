@@ -1,0 +1,106 @@
+@import "../../../../../styles/variables/breakpoints";
+
+:host {
+  display: block;
+}
+
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.level__picker__wrapper {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.level__picker {
+  font-size: 20px;
+}
+
+.board {
+  width: 460px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+  padding: 10px;
+  border: 10px solid transparent;
+  border-image: url("/assets/images/memory_images/wall.jpg");
+  border-image-slice: 30;
+  border-image-width: 10px;
+  border-image-outset: 0;
+  border-image-repeat: round;
+  border-left: 0;
+  border-right: 0;
+  border-top: 15px solid transparent;
+  border-bottom: 15px solid transparent;
+  background: url("/assets/images/memory_images/marble.jpg") center/cover;
+}
+
+@keyframes fadeInOpacity {
+  0% {
+    opacity: 1;
+  }
+  10% {
+    opacity: 1;
+  }
+  80% {
+    opacity: 0.8;
+  }
+  90% {
+    opacity: 0.9;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+.image {
+  width: 80px;
+  height: 80px;
+  transition: width 0.3s ease, height 0.3s ease;
+
+  @media (min-width: $screen-926) {
+    width: 100px;
+    height: 100px;
+  }
+}
+
+.image:hover {
+  cursor: pointer;
+  opacity: 0.8;
+}
+
+.active {
+  animation: fadeInOpacity 1s ease-in-out;
+}
+
+.messages {
+  margin-top: 20px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+.level__info {
+  font-size: 16px;
+}
+
+.success {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.score {
+  font-size: 18px;
+  margin-bottom: 10px;
+}

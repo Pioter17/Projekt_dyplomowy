@@ -6,32 +6,29 @@
   </div>
 
   @if (play) {
-    <div class="board">
-      @for (hole of holesIds; track $index) {
-        <div class="background">
-          <div
-            [class]="'hole ' + (hole == 1 ? 'revealed__hole' : '')"
-            (click)="whack($index)"
-          >
-          </div>
-        </div>
-      }
+  <div class="board">
+    @for (hole of holesIds; track $index) {
+    <div class="background">
+      <div [class]="'hole ' + (hole == 1 ? 'revealed__hole' : '')" (click)="whack($index)">
+      </div>
     </div>
+    }
+  </div>
   }
   <div class="messages">
     @if (play) {
-      <span class="level__info">
-        {{t('points')}}: {{ points }}
-      </span>
-      <span class="level__info">
-        {{t('time')}} 0:{{ seconds | number: '2.0' }}
-      </span>
+    <span class="level__info">
+      {{t('points')}}: {{ points }}
+    </span>
+    <span class="level__info">
+      {{t('time')}} 0:{{ seconds | number: '2.0' }}
+    </span>
     }
     @if (isSuccess == 1) {
-      <h1>{{t('youWon')}}</h1>
-      <h3>{{t('yourScore')}} {{ youScore }}</h3>
-      <h4>{{t('yourPoints')}} {{ points }}</h4>
-      <button mat-stroked-button class='reset' (click)="start()">{{t('startAgain')}}</button>
+    <h1>{{t('youWon')}}</h1>
+    <h3>{{t('yourScore')}} {{ yourScore }}</h3>
+    <h4>{{t('yourPoints')}} {{ points }}</h4>
+    <button mat-stroked-button class='reset' (click)="start()">{{t('startAgain')}}</button>
     }
   </div>
 </div>
