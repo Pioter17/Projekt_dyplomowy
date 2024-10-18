@@ -1,0 +1,22 @@
+<div class="wrapper" *transloco="let t">
+	<div class="level__picker__wrapper">
+		<button mat-button class="level__picker" (click)="start(1)">{{t('levels.easy')}}</button>
+		<button mat-button class="level__picker" (click)="start(2)">{{t('levels.medium')}}</button>
+		<button mat-button class="level__picker" (click)="start(3)">{{t('levels.hard')}}</button>
+	</div>
+	<div class="board">
+		@for (column of board; track column; let colIndex = $index) {
+		@if (colIndex < 10) { <div class="column">
+			@for (card of column; track card; let cardIndex = $index) {
+			<div class="card" [ngStyle]="{'--index': cardIndex}" [ngClass]="card.getTemporaryState() |GetTemporaryState | async" (click)="checkMatching(colIndex, cardIndex)">
+				<!-- TODO problem z wywołaniem funkcji bezpośrednio - z jakiegoś powodu z pipem nie działało -->
+				@if (card.getCardData().isRevealed){ 
+				<h1>{{card | pwSolitaireCardValue}}</h1>
+				}
+			</div>
+			}
+	</div>
+	}
+	}
+</div>
+</div>

@@ -1,0 +1,78 @@
+:host {
+  display: block;
+}
+
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.level__picker__wrapper {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.level__picker {
+  font-size: 20px;
+}
+
+.board {
+  display: flex;
+  gap: 10px;
+  max-height: 900px;
+  background-color: green;
+}
+
+.column {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  padding-top: 100px;
+}
+
+.card {
+  width: 70px;
+  height: 90px;
+  border: 1px solid black;
+  text-align: center;
+  position: relative;
+  margin-top: -30px;
+  background-color: #fff;
+}
+
+.card {
+  z-index: var(--index);
+}
+
+.active {
+  color: yellow;
+  border: 2px solid yellow;
+}
+
+@keyframes shake {
+  0% {
+    transform: translateX(0);
+  }
+  20% {
+    transform: translateX(10px);
+  }
+  40% {
+    transform: translateX(-10px);
+  }
+  60% {
+    transform: translateX(10px);
+  }
+  80% {
+    transform: translateX(-10px);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
+.error {
+  animation: shake 0.5s linear;
+}

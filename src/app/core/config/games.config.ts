@@ -13,6 +13,7 @@ import { MastermindTipsComponent } from '@pages/game-page/components/tips/master
 import { WhackamoleTipsComponent } from '@pages/game-page/components/tips/whackamole-tips/whackamole-tips.component';
 import { CombinationsComponent } from '@pages/game-page/components/combinations/combinations.component';
 import { CombinationsTipsComponent } from '@pages/game-page/components/tips/combinations-tips/combinations-tips.component';
+import { SolitaireComponent } from '@pages/game-page/components/solitaire/solitaire.component';
 
 export const Games: Record<string, Game> = {
   minesweeper: {
@@ -38,6 +39,11 @@ export const Games: Record<string, Game> = {
   combinations: {
     game: CombinationsComponent,
     tips: CombinationsTipsComponent,
-    scores: MASTERMIND_MOCK,
+    scores: MASTERMIND_MOCK, //TODO stworzyć inne
+  },
+  solitaire: {
+    game: SolitaireComponent,
+    tips: CombinationsTipsComponent,
+    scores: MASTERMIND_MOCK, //TODO stworzyć inne
   },
 };
