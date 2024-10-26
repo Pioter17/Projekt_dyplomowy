@@ -17,17 +17,16 @@
     <span>{{ completedChains }}</span>
   </div>
   <div class="board">
-    @for (column of board; track column; let colIndex = $index) { 
+    @for (column of board; track column; let colIndex = $index) {
     <div class="column">
       @for (card of column; track card; let cardIndex = $index) {
-      <div
-        class="card"
-        [ngStyle]="{ '--index': cardIndex }"
+      <div class="card" [ngStyle]="{ '--index': cardIndex }"
         [ngClass]="[card | GetLastFieldClass, card | GetTemporaryState | async]"
-        (click)="checkMatching(colIndex, cardIndex)"
-      >
+        (click)="checkMatching(colIndex, cardIndex)">
         @if (card.CardData.isRevealed){
-        <h1>{{ card | pwSolitaireCardValue }}</h1>
+        <!-- <h1>{{ card | pwSolitaireCardValue }}</h1> -->
+        <img class="image"
+          [src]="'/assets/images/solitaire_images/' + card.CardData.value + '_' + card.CardData.color + '.png'" alt="">
         }
       </div>
       }
@@ -42,7 +41,7 @@
     </span> -->
     <span class="level__info">
       {{ t("time") }} {{ minutes | number : "2.0" }}:{{
-        seconds | number : "2.0"
+      seconds | number : "2.0"
       }}
     </span>
     } @if (isSuccess == 1) {
@@ -50,12 +49,12 @@
     <h3>{{ t("yourScore") }} {{ yourScore }}</h3>
     <h4>
       {{ t("yourTime") }} {{ minutes | number : "2.0" }}:{{
-        seconds | number : "2.0"
+      seconds | number : "2.0"
       }}
     </h4>
     <button mat-stroked-button class="reset" (click)="start()">
-			{{ t("startAgain") }}
+      {{ t("startAgain") }}
     </button>
-	} 
+    }
   </div>
 </div>

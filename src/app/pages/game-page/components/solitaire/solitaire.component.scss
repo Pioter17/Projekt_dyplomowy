@@ -48,6 +48,11 @@
   z-index: var(--index);
 }
 
+.image {
+  width: inherit;
+  height: inherit;
+}
+
 .empty {
   border: 2px solid white;
   background-color: green;
