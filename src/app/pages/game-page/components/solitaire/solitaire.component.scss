@@ -27,6 +27,7 @@
 }
 
 .column {
+  width: 70px;
   display: flex;
   flex-direction: column;
   position: relative;
@@ -45,6 +46,19 @@
 
 .card {
   z-index: var(--index);
+}
+
+.empty {
+  border: 2px solid white;
+  background-color: green;
+
+  h1 {
+    display: none;
+  }
+}
+
+.covered {
+  display: none;
 }
 
 .active {
@@ -74,5 +88,6 @@
 }
 
 .error {
+  border: 2px solid red;
   animation: shake 0.5s linear;
 }

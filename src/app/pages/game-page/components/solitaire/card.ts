@@ -15,7 +15,7 @@ export class Card {
     upperNeighbour: Card,
     columnId: number,
     id: number,
-    isRevealed?: boolean
+    isRevealed: boolean = false
   ) {
     this.value = value;
     this.color = color;
@@ -29,7 +29,7 @@ export class Card {
     return this.temporaryState.asObservable();
   }
 
-  getCardData() {
+  get CardData() {
     return {
       columnId: this.columnId,
       id: this.id,
@@ -49,7 +49,10 @@ export class Card {
   }
 
   setTemporaryStateChain(state: string) {
-    //TODO uzupełnić
+    if (this.upperNeighbour) {
+      this.upperNeighbour.setTemporaryStateChain(state);
+    } 
+    this.setTemporaryState(state);
   }
 
   setNeighbour(newNeighbour: Card) {
@@ -73,22 +76,19 @@ export class Card {
   }
 
   canBePlacedAt(destinatioCard: Card): boolean {
-    let dest = destinatioCard.getCardData();
+    let dest = destinatioCard.CardData;
     if (dest.value == -1) {
       return true;
     }
     if ((dest.color - this.color) % 2 == 0 && dest.color != this.color) {
-      console.log('cbpa1');
       return false;
     }
     if (this.value == 0) {
-      console.log('cbpa2');
       return false;
     }
     if (dest.value - this.value == 1 || dest.value - this.value == -12) {
       return true;
     }
-    console.log('cbpa3');
     return false;
   }
 
@@ -102,11 +102,11 @@ export class Card {
 
   changeChainLocation(column: number, id: number) {
     this.columnId = column;
-    this.id = id;
+    this.id = id + 1;
     if (!this.upperNeighbour) {
       return;
     } else {
-      this.upperNeighbour.changeChainLocation(column, id);
+      this.upperNeighbour.changeChainLocation(column, id + 1);
     }
   }
 

@@ -7,6 +7,6 @@ import { Card } from '@pages/game-page/components/solitaire/card';
 })
 export class SolitaireCardValuePipe implements PipeTransform {
   transform(card: Card): number {
-    return card.getCardData().value;
+    return card.CardData.value;
   }
 }

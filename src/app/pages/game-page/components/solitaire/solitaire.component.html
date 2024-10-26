@@ -1,22 +1,61 @@
 <div class="wrapper" *transloco="let t">
-	<div class="level__picker__wrapper">
-		<button mat-button class="level__picker" (click)="start(1)">{{t('levels.easy')}}</button>
-		<button mat-button class="level__picker" (click)="start(2)">{{t('levels.medium')}}</button>
-		<button mat-button class="level__picker" (click)="start(3)">{{t('levels.hard')}}</button>
-	</div>
-	<div class="board">
-		@for (column of board; track column; let colIndex = $index) {
-		@if (colIndex < 10) { <div class="column">
-			@for (card of column; track card; let cardIndex = $index) {
-			<div class="card" [ngStyle]="{'--index': cardIndex}" [ngClass]="card.getTemporaryState() |GetTemporaryState | async" (click)="checkMatching(colIndex, cardIndex)">
-				<!-- TODO problem z wywołaniem funkcji bezpośrednio - z jakiegoś powodu z pipem nie działało -->
-				@if (card.getCardData().isRevealed){ 
-				<h1>{{card | pwSolitaireCardValue}}</h1>
-				}
-			</div>
-			}
-	</div>
-	}
-	}
-</div>
+  <div class="level__picker__wrapper">
+    <button mat-button class="level__picker" (click)="start(1)">
+      {{ t("levels.easy") }}
+    </button>
+    <button mat-button class="level__picker" (click)="start(2)">
+      {{ t("levels.medium") }}
+    </button>
+    <button mat-button class="level__picker" (click)="start(3)">
+      {{ t("levels.hard") }}
+    </button>
+  </div>
+  <div class="temp">
+    <button (click)="addCards()" [disabled]="additionsLeft < 1">
+      add more {{ additionsLeft }}
+    </button>
+    <span>{{ completedChains }}</span>
+  </div>
+  <div class="board">
+    @for (column of board; track column; let colIndex = $index) { 
+    <div class="column">
+      @for (card of column; track card; let cardIndex = $index) {
+      <div
+        class="card"
+        [ngStyle]="{ '--index': cardIndex }"
+        [ngClass]="[card | GetLastFieldClass, card | GetTemporaryState | async]"
+        (click)="checkMatching(colIndex, cardIndex)"
+      >
+        @if (card.CardData.isRevealed){
+        <h1>{{ card | pwSolitaireCardValue }}</h1>
+        }
+      </div>
+      }
+    </div>
+    }
+  </div>
+  <div class="messages">
+    @if (play) {
+    <!-- <span class="level__info">
+      {{ t("bombs") }}: {{ this.bombs }}, {{ t("flags") }}: {{ this.flags }}
+      <br />
+    </span> -->
+    <span class="level__info">
+      {{ t("time") }} {{ minutes | number : "2.0" }}:{{
+        seconds | number : "2.0"
+      }}
+    </span>
+    } @if (isSuccess == 1) {
+    <h1>{{ t("youWon") }}</h1>
+    <h3>{{ t("yourScore") }} {{ yourScore }}</h3>
+    <h4>
+      {{ t("yourTime") }} {{ minutes | number : "2.0" }}:{{
+        seconds | number : "2.0"
+      }}
+    </h4>
+    <button mat-stroked-button class="reset" (click)="start()">
+			{{ t("startAgain") }}
+    </button>
+	} 
+  </div>
 </div>

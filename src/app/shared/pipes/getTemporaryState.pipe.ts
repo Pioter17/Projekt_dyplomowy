@@ -8,7 +8,7 @@ import { map, Observable } from 'rxjs';
   pure: false,
 })
 export class GetTemporaryStatePipe implements PipeTransform {
-  transform(temporaryState$: Observable<string>): Observable<string> {
-    return temporaryState$.pipe(map((state) => state));
+  transform(card: Card): Observable<string> {
+    return card.getTemporaryState().pipe(map((state) => state));
   }
 }

@@ -7,6 +7,6 @@ import { Card } from '@pages/game-page/components/solitaire/card';
 })
 export class IsCardRevealedPipe implements PipeTransform {
   transform(card: Card): boolean {
-    return card.getCardData().isRevealed;
+    return card.CardData.isRevealed;
   }
 }
