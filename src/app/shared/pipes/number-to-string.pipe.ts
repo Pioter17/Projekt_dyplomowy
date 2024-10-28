@@ -1,7 +1,7 @@
 import { Pipe, type PipeTransform } from '@angular/core';
 
 @Pipe({
-  name: 'pwNumberToString',
+  name: 'NumberToString',
   standalone: true,
 })
 export class NumberToStringPipe implements PipeTransform {

@@ -8,8 +8,8 @@ import { MatButtonModule } from '@angular/material/button';
 import { TranslocoModule } from '@jsverse/transloco';
 import { Card } from '@pages/game-page/components/solitaire/card';
 import { ScoreboardService } from '@pages/game-page/scoreboard.service';
-import { GetLastFieldClassPipe } from '@shared/pipes/getLastFieldClass.pipe';
-import { GetTemporaryStatePipe } from '@shared/pipes/getTemporaryState.pipe';
+import { GetLastFieldClassPipe } from '@shared/pipes/get-last-field-class.pipe';
+import { GetTemporaryStatePipe } from '@shared/pipes/get-temporary-state.pipe';
 import { IsCardRevealedPipe } from '@shared/pipes/is-card-revealed.pipe';
 import { SolitaireCardValuePipe } from '@shared/pipes/solitaire-card-value.pipe';
 
@@ -51,13 +51,23 @@ export class SolitaireComponent {
     private scoreService: ScoreboardService
   ) {}
 
-  initBoard() {
+  initBoard(level: number) {
+    let colors = 1;
+    switch (level) {
+      case 2:
+        colors = 2;
+        break;
+      case 3:
+        colors = 4;
+        break;
+    }
     let cardsOrder = new Set<number>();
     while (cardsOrder.size < 104) {
       cardsOrder.add(Math.floor(Math.random() * 104) + 1);
     }
     const cards = Array.from(cardsOrder);
     const board = Array.from({ length: 10 }, () => []);
+
     let cardIndex = 0;
     for (let i = 0; i < 4; i++) {
       let partOfCards = cards.slice(cardIndex, cardIndex + 6);
@@ -66,7 +76,7 @@ export class SolitaireComponent {
         board[i].push(
           new Card(
             partOfCards[6 - j] % 13,
-            1,
+            Math.floor(partOfCards[6 - j] / 13) % colors + 1,
             j < 6 ? board[i][6 - j - 1] : null,
             i,
             j,
@@ -84,7 +94,7 @@ export class SolitaireComponent {
         board[i].push(
           new Card(
             partOfCards[5 - j] % 13,
-            1,
+            Math.floor(partOfCards[5 - j] / 13) % colors + 1,
             j < 5 ? board[i][5 - j - 1] : null,
             i,
             j,
@@ -108,7 +118,7 @@ export class SolitaireComponent {
     this.additionsLeft = 5;
     this.resetTimer();
     this.startTimer();
-    this.initBoard();
+    this.initBoard(level);
   }
 
   startTimer() {
@@ -184,22 +194,7 @@ export class SolitaireComponent {
     this.board[firstCardData.columnId][firstCardData.id - 1].reveal();
     this.board[firstCardData.columnId] = [...this.board[firstCardData.columnId]]
     firstCard.putOn(secondCard);
-    let indexToCutOffCompletedChain = this.checkChainCompletion(
-      this.board[secondCardData.columnId]
-    );
-    if (indexToCutOffCompletedChain) {
-      this.board[secondCardData.columnId].splice(indexToCutOffCompletedChain);
-      this.board[secondCardData.columnId][
-        this.board[secondCardData.columnId].length - 1
-      ].reveal();
-      this.completedChains++;
-      if (this.completedChains == 8) {
-        this.play = false;
-        this.isSuccess = 1;
-        this.stopTimer();
-        this.countScore();
-      }
-    }
+    this.checkChainAndFinishCondition(secondCardData.columnId);
     this.cdr.detectChanges();
   }
 
@@ -216,6 +211,7 @@ export class SolitaireComponent {
       );
       this.board[i].push(newCardOnTop);
       this.board[i][this.board[i].length - 2].setNeighbour(newCardOnTop);
+      this.checkChainAndFinishCondition(i);
     }
     this.additionsLeft--;
   }
@@ -226,6 +222,25 @@ export class SolitaireComponent {
       this.yourScore = 999999;
     }
     this.scoreService.updateScores(this.yourScore);
+  }
+
+  private checkChainAndFinishCondition(columnId: number) {
+    let indexToCutOffCompletedChain = this.checkChainCompletion(
+      this.board[columnId]
+    );
+    if (indexToCutOffCompletedChain) {
+      this.board[columnId].splice(indexToCutOffCompletedChain);
+      this.board[columnId][
+        this.board[columnId].length - 1
+      ].reveal();
+      this.completedChains++;
+      if (this.completedChains == 8) {
+        this.play = false;
+        this.isSuccess = 1;
+        this.stopTimer();
+        this.countScore();
+      }
+    }
   }
 
   private checkChainCompletion(column: Card[]): number {

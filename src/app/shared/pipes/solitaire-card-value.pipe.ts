@@ -2,7 +2,7 @@ import { Pipe, type PipeTransform } from '@angular/core';
 import { Card } from '@pages/game-page/components/solitaire/card';
 
 @Pipe({
-  name: 'pwSolitaireCardValue',
+  name: 'SolitaireCardValue',
   standalone: true,
 })
 export class SolitaireCardValuePipe implements PipeTransform {

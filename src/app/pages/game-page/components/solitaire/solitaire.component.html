@@ -21,10 +21,9 @@
     <div class="column">
       @for (card of column; track card; let cardIndex = $index) {
       <div class="card" [ngStyle]="{ '--index': cardIndex }"
-        [ngClass]="[card | GetLastFieldClass, card | GetTemporaryState | async]"
+        [ngClass]="[card | GetLastFieldClass, card | GetTemporaryState | async, card.CardData.isRevealed == true ? 'revealed' : '']"
         (click)="checkMatching(colIndex, cardIndex)">
         @if (card.CardData.isRevealed){
-        <!-- <h1>{{ card | pwSolitaireCardValue }}</h1> -->
         <img class="image"
           [src]="'/assets/images/solitaire_images/' + card.CardData.value + '_' + card.CardData.color + '.png'" alt="">
         }

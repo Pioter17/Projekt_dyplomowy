@@ -60,14 +60,13 @@ export class Card {
   }
 
   canChainBeMoved(): boolean {
-    // TODO na razie nie uwzględnia różnych kolorów w łańcuchu
     if (!this.isRevealed) {
       return false;
     }
     if (this.isOnTop()) {
       return true;
     } else {
-      if (this.upperNeighbour.canBePlacedAt(this)) {
+      if (this.upperNeighbour.canBePlacedAt(this) && this.upperNeighbour.CardData.color == this.color) {
         return this.upperNeighbour.canChainBeMoved();
       } else {
         return false;
