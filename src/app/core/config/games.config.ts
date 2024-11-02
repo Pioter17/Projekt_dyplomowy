@@ -14,6 +14,7 @@ import { WhackamoleTipsComponent } from '@pages/game-page/components/tips/whacka
 import { CombinationsComponent } from '@pages/game-page/components/combinations/combinations.component';
 import { CombinationsTipsComponent } from '@pages/game-page/components/tips/combinations-tips/combinations-tips.component';
 import { SolitaireComponent } from '@pages/game-page/components/solitaire/solitaire.component';
+import { SolitaireTipsComponent } from '@pages/game-page/components/tips/solitaire-tips/solitaire-tips.component';
 
 export const Games: Record<string, Game> = {
   minesweeper: {
@@ -43,7 +44,7 @@ export const Games: Record<string, Game> = {
   },
   solitaire: {
     game: SolitaireComponent,
-    tips: CombinationsTipsComponent,
+    tips: SolitaireTipsComponent,
     scores: MASTERMIND_MOCK, //TODO stworzyć inne
   },
 };

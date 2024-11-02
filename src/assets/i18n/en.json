@@ -6,6 +6,7 @@
     "mastermind": "Mastermind",
     "whack-a-mole": "Whack-a-mole",
     "combinations": "Combinations",
+    "solitaire": "Solitaire",
     "try": "Try it!"
   },
   "goBack": "Go back",
@@ -24,6 +25,7 @@
   "turns": "Turns",
   "points": "Points",
   "yourPoints": "Your points",
+  "moves": "Moves",
   "time": "Time",
   "score": "Score",
   "yourTime": "Your time",
@@ -76,5 +78,13 @@
     "2": "First you will see the combination you need to remember",
     "3": "When the clock starts you have to repeat combination by clicking on right images",
     "4": "When the time is up or you missorder images the game is over"
+  },
+  "solitaireTips": {
+    "1": "Here are game fundamentals:",
+    "2": "You need to arrange the cards in sequence: King, Queen, Jack, 10, 9, ..., 2, Ace, and in the correct suit",
+    "3": "To do this, you need to move cards around, but you cannot place cards on top of each other if they don't match the sequence or are the wrong color (you can place black on red and vice versa, but this sequence cannot be moved afterward)",
+    "4": "If you run out of moves, you can add one card to each column by clicking on the \"stack\" of cards in the top right corner of the board",
+    "5": "The faster you do this, the more points you earn",
+    "6": "Sometimes, there might be no possible moves. In that case, you will need to restart the game"
   }
 }

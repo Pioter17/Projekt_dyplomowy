@@ -23,7 +23,7 @@ import { SolitaireCardValuePipe } from '@shared/pipes/solitaire-card-value.pipe'
     SolitaireCardValuePipe,
     IsCardRevealedPipe,
     GetTemporaryStatePipe,
-    GetLastFieldClassPipe
+    GetLastFieldClassPipe,
   ],
   templateUrl: './solitaire.component.html',
   styleUrl: './solitaire.component.scss',
@@ -40,25 +40,40 @@ export class SolitaireComponent {
   moves: number;
   showInterval: number;
   isRunning: boolean = false;
+  colors: number;
   first: Card;
   board: Card[][];
   cardsLeft: number[];
-  completedChains: number;
-  additionsLeft: number;
+  completedChains: number[];
+  additionsLeft: number[];
 
   constructor(
     private cdr: ChangeDetectorRef,
     private scoreService: ScoreboardService
   ) {}
 
+  start(level?: number) {
+    this.play = true;
+    this.isSuccess = 0;
+    this.moves = 0;
+    this.gameLevel = level;
+    this.completedChains = [];
+    this.additionsLeft = [1, 1, 1, 1, 1];
+    this.resetTimer();
+    this.startTimer();
+    this.initBoard(level);
+  }
+
   initBoard(level: number) {
-    let colors = 1;
     switch (level) {
+      case 1:
+        this.colors = 1;
+        break;
       case 2:
-        colors = 2;
+        this.colors = 2;
         break;
       case 3:
-        colors = 4;
+        this.colors = 4;
         break;
     }
     let cardsOrder = new Set<number>();
@@ -76,7 +91,7 @@ export class SolitaireComponent {
         board[i].push(
           new Card(
             partOfCards[6 - j] % 13,
-            Math.floor(partOfCards[6 - j] / 13) % colors + 1,
+            (Math.floor(partOfCards[6 - j] / 13) % this.colors) + 1,
             j < 6 ? board[i][6 - j - 1] : null,
             i,
             j,
@@ -94,7 +109,7 @@ export class SolitaireComponent {
         board[i].push(
           new Card(
             partOfCards[5 - j] % 13,
-            Math.floor(partOfCards[5 - j] / 13) % colors + 1,
+            (Math.floor(partOfCards[5 - j] / 13) % this.colors) + 1,
             j < 5 ? board[i][5 - j - 1] : null,
             i,
             j,
@@ -106,19 +121,8 @@ export class SolitaireComponent {
       board[i] = board[i].reverse();
       cardIndex += 5;
     }
-    this.cardsLeft = cards.slice(cardIndex); //TODO zrobić jakoś, żeby to też były karty;
+    this.cardsLeft = cards.slice(cardIndex);
     this.board = board;
-  }
-
-  start(level?: number) {
-    this.play = true;
-    this.isSuccess = 0;
-    this.moves = 0;
-    this.completedChains = 0;
-    this.additionsLeft = 5;
-    this.resetTimer();
-    this.startTimer();
-    this.initBoard(level);
   }
 
   startTimer() {
@@ -192,32 +196,41 @@ export class SolitaireComponent {
       ...movedPart,
     ];
     this.board[firstCardData.columnId][firstCardData.id - 1].reveal();
-    this.board[firstCardData.columnId] = [...this.board[firstCardData.columnId]]
+    this.board[firstCardData.columnId] = [
+      ...this.board[firstCardData.columnId],
+    ];
     firstCard.putOn(secondCard);
+    this.moves++;
     this.checkChainAndFinishCondition(secondCardData.columnId);
     this.cdr.detectChanges();
   }
 
   addCards() {
+    if (this.additionsLeft.length < 1) {
+      return;
+    }
     let cardsToAdd = this.cardsLeft.splice(0, 10);
     for (let i = 0; i < 10; i++) {
       let newCardOnTop = new Card(
         cardsToAdd[i] % 13,
-        1,
+        Math.floor(cardsToAdd[i] / 13) % this.colors + 1,
         null,
         i,
         this.board[i].length,
         true
       );
-      this.board[i].push(newCardOnTop);
+      this.board[i] = [...this.board[i], newCardOnTop];
       this.board[i][this.board[i].length - 2].setNeighbour(newCardOnTop);
       this.checkChainAndFinishCondition(i);
     }
-    this.additionsLeft--;
+    this.additionsLeft.pop();
   }
 
   countScore() {
-    this.yourScore = 1;
+    this.yourScore =
+      Math.pow(100, this.gameLevel) * 10 -
+      (this.moves - 100) * Math.pow(10, this.gameLevel) -
+      (60 * this.minutes + this.seconds) * Math.pow(2, this.gameLevel);
     if (this.yourScore > 999999) {
       this.yourScore = 999999;
     }
@@ -229,12 +242,12 @@ export class SolitaireComponent {
       this.board[columnId]
     );
     if (indexToCutOffCompletedChain) {
+      let color =
+        this.board[columnId][indexToCutOffCompletedChain].CardData.color;
       this.board[columnId].splice(indexToCutOffCompletedChain);
-      this.board[columnId][
-        this.board[columnId].length - 1
-      ].reveal();
-      this.completedChains++;
-      if (this.completedChains == 8) {
+      this.board[columnId][this.board[columnId].length - 1].reveal();
+      this.completedChains.push(color);
+      if (this.completedChains.length == 8) {
         this.play = false;
         this.isSuccess = 1;
         this.stopTimer();

@@ -6,6 +6,7 @@
     "mastermind": "Mastermind",
     "whack-a-mole": "Zbij Kreta",
     "combinations": "Kombinacje",
+    "solitaire": "Pasjans",
     "try": "Spróbuj!"
   },
   "goBack": "Wróć",
@@ -24,6 +25,7 @@
   "turns": "Tury",
   "points": "Punkty",
   "yourPoints": "Twoje punkty",
+  "moves": "Ruchy",
   "time": "Czas",
   "score": "Wynik",
   "yourTime": "Twój czas",
@@ -76,5 +78,13 @@
     "2": "Na początku wyświetli się kombinacja, którą musisz zapamiętać",
     "3": "Gdy zegar wystartuje musisz powtórzyć zadaną kombinację klikając w odpowiednie kafelki",
     "4": "Gdy czas się skończy lub pomylisz kafelki gra się kończy"
+  },
+  "solitaireTips": {
+    "1": "Oto podstawy gry:",
+    "2": "Musisz ustawić karty w sekwencji: król, dama, walet, 10, 9, ..., 2, As i we właściwym kolorze",
+    "3": "Aby to zrobić, musisz przekładać karty, przy czym nie możesz położyć na siebie kart niezgodnie z sekwencją lub w niewłaściwym kolorze (możesz położyć czarne na czerwone i odwrotnie, ale takiej sekwencji nie można potem ruszyć)",
+    "4": "Jeśli skończą ci się opcje, możesz dołożyć po jednej karcie do każdej kolumny klikając na \"stos\" kart w prawym górnym rogu planszy",
+    "5": "Im szybciej to zrobisz, tym więcej punktów zdobędziesz",
+    "6": "Może wystąpić sytuacja, że nie będzie żadnej możliwej opcji. Musisz wtedy rozpocząć grę od nowa"
   }
 }

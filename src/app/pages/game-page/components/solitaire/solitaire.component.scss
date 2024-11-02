@@ -20,10 +20,38 @@
 }
 
 .board {
+  background-color: green;
+  padding: 20px;
+  min-height: 500px;
+  padding-bottom: 100px;
+}
+
+.actual__board {
   display: flex;
   gap: 10px;
-  // max-height: 900px;
-  background-color: green;
+}
+
+.first__row {
+  height: 100px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.completed__row {
+  border: 2px solid white;
+  border-radius: 20px;
+  width: 300px;
+  height: 110px;
+  display: flex;
+  align-items: center;
+  padding-left: 20px;
+  position: relative;
+}
+
+.additional__cards {
+  padding-left: 60px;
+  display: flex;
+  position: relative;
 }
 
 .column {
@@ -37,17 +65,24 @@
 .card {
   width: 70px;
   height: 90px;
-  border: 1px solid black;
   border-radius: 10px;
-  text-align: center;
   position: relative;
   margin-top: -60px;
-  background-color: #fff;
+  background: url("/assets/images/solitaire_images/rewers.png") center/cover;
+}
+
+.card__in__row {
+  margin-top: 0;
+  margin-left: -80px;
+}
+
+.completed__card {
+  margin-top: 0;
+  margin-right: -40px;
 }
 
 .revealed {
   border: none;
-  background-color: transparent;
 }
 
 .card {
@@ -60,6 +95,8 @@
 }
 
 .empty {
+  background: none;
+  border-radius: 10px;
   border: 2px solid white;
   background-color: green;
 
@@ -73,6 +110,7 @@
 }
 
 .active {
+  border-radius: 10px;
   color: yellow;
   border: 2px solid yellow;
 }
@@ -99,6 +137,7 @@
 }
 
 .error {
+  border-radius: 10px;
   border: 2px solid red;
   animation: shake 0.5s linear;
 }
