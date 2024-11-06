@@ -1,8 +1,11 @@
+@import "../../../../../styles/variables/breakpoints";
+
 :host {
   display: block;
 }
 
 .wrapper {
+  width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -21,31 +24,76 @@
 
 .board {
   background-color: green;
-  padding: 20px;
+  width: 100%;
   min-height: 500px;
   padding-bottom: 100px;
+  margin-bottom: 20px;
+
+  @media (min-width: $screen-550) {
+    padding: 5px;
+    width: 95%;
+    padding-bottom: 200px;
+  }
+
+  @media (min-width: $screen-926) {
+    padding: 20px;
+    width: 94%;
+    padding-bottom: 300px;
+  }
 }
 
 .actual__board {
   display: flex;
-  gap: 10px;
+  justify-content: center;
+  gap: 2px;
+
+  @media (min-width: $screen-1024) {
+    gap: 10px;
+  }
 }
 
 .first__row {
-  height: 100px;
+  height: 55px;
   display: flex;
+  padding: 20px;
   justify-content: space-between;
+  align-items: center;
+
+  @media (min-width: $screen-550) {
+    height: 70px;
+  }
+
+  @media (min-width: $screen-720) {
+    height: 95px;
+  }
+
+  @media (min-width: $screen-926) {
+    height: 110px;
+  }
 }
 
 .completed__row {
   border: 2px solid white;
-  border-radius: 20px;
-  width: 300px;
-  height: 110px;
+  border-radius: 10px;
+  height: inherit;
   display: flex;
   align-items: center;
-  padding-left: 20px;
   position: relative;
+  padding-left: 10px;
+  padding-right: 28px;
+
+  @media (min-width: $screen-550) {
+    padding-right: 30px;
+  }
+
+  @media (min-width: $screen-720) {
+    padding-left: 20px;
+    padding-right: 58px;
+  }
+
+  @media (min-width: $screen-926) {
+    padding-right: 60px;
+  }
 }
 
 .additional__cards {
@@ -55,30 +103,78 @@
 }
 
 .column {
-  width: 70px;
   display: flex;
   flex-direction: column;
   position: relative;
-  padding-top: 100px;
+  padding-top: 50px;
+
+  @media (min-width: $screen-550) {
+    padding-top: 65px;
+  }
+
+  @media (min-width: $screen-720) {
+    padding-top: 80px;
+  }
+
+  @media (min-width: $screen-926) {
+    padding-top: 100px;
+    width: 70px;
+  }
 }
 
 .card {
-  width: 70px;
-  height: 90px;
-  border-radius: 10px;
+  box-sizing: border-box;
+  width: 35px;
+  height: 46px;
+  border-radius: 2px;
   position: relative;
-  margin-top: -60px;
+  margin-top: -30px;
   background: url("/assets/images/solitaire_images/rewers.png") center/cover;
+
+  @media (min-width: $screen-550) {
+    border-radius: 5px;
+    width: 45px;
+    height: 60px;
+    margin-top: -40px;
+  }
+
+  @media (min-width: $screen-720) {
+    width: 60px;
+    height: 80px;
+    margin-top: -50px;
+  }
+
+  @media (min-width: $screen-926) {
+    width: 68px;
+    height: 90px;
+    margin-top: -60px;
+  }
 }
 
 .card__in__row {
   margin-top: 0;
-  margin-left: -80px;
+  margin-left: -40px;
+
+  @media (min-width: $screen-550) {
+    margin-left: -60px;
+  }
+
+  @media (min-width: $screen-720) {
+    margin-left: -80px;
+  }
 }
 
 .completed__card {
   margin-top: 0;
-  margin-right: -40px;
+  margin-right: -20px;
+
+  @media (min-width: $screen-550) {
+    margin-right: -20px;
+  }
+
+  @media (min-width: $screen-720) {
+    margin-right: -40px;
+  }
 }
 
 .revealed {

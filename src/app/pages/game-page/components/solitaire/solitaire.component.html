@@ -10,42 +10,45 @@
       {{ t("levels.hard") }}
     </button>
   </div>
-  @if (play) {
+  @if (play || isSuccess == 1) {
   <div class="board">
     <div class="first__row">
       <div class="completed__row">
         @for (card of completedChains; track $index) {
-          <div class="card completed__card revealed">
-            <img class="image"
-              [src]="'/assets/images/solitaire_images/0_' + card + '.png'" alt="">
-          </div>
+        <div class="card completed__card revealed">
+          <img class="image" [src]="'/assets/images/solitaire_images/0_' + card + '.png'" alt="">
+        </div>
         }
       </div>
       <div class="additional__cards">
         @for (card of additionsLeft; track $index) {
-          <div class="card card__in__row" (click)="addCards()"></div>
+        <div class="card card__in__row" (click)="addCards()"></div>
         } @empty {
-          <div class="card card__in__row empty"></div>
+        <div class="card card__in__row empty"></div>
         }
       </div>
     </div>
+    @if (play) {
+
     <div class="actual__board">
       @for (column of board; track column; let colIndex = $index) {
-        <div class="column">
-          @for (card of column; track card; let cardIndex = $index) {
-            <div class="card" [ngStyle]="{ '--index': cardIndex }"
-            [ngClass]="[card | GetLastFieldClass, card | GetTemporaryState | async, card.CardData.isRevealed == true ? 'revealed' : '']"
-            (click)="checkMatching(colIndex, cardIndex)">
-            @if (card.CardData.isRevealed && card.CardData.value > -1){
-              <img class="image"
-              [src]="'/assets/images/solitaire_images/' + card.CardData.value + '_' + card.CardData.color + '.png'" alt="">
-            }
-          </div>
+      <div class="column">
+        @for (card of column; track card; let cardIndex = $index) {
+        <div class="card" [ngStyle]="{ '--index': cardIndex }"
+          [ngClass]="[card | GetLastFieldClass, card | GetTemporaryState | async, card.CardData.isRevealed == true ? 'revealed' : '']"
+          (click)="checkMatching(colIndex, cardIndex)">
+          @if (card.CardData.isRevealed && card.CardData.value > -1){
+          <img class="image"
+            [src]="'/assets/images/solitaire_images/' + card.CardData.value + '_' + card.CardData.color + '.png'"
+            alt="">
+          }
+        </div>
+        }
+      </div>
       }
     </div>
-  }
-</div>
-</div>
+    }
+  </div>
   }
   <div class="messages">
     @if (play) {

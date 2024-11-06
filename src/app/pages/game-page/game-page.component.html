@@ -2,36 +2,36 @@
   <h1 class="title">{{ t('welcomeGame', {name: t('games.'+gameName)}) }}</h1>
   <div class="buttons__wrapper">
     <button class="tab__button" mat-raised-button (click)="isGame = true" [disabled]="isGame">{{t('game')}}</button>
-    <button class="tab__button" mat-raised-button (click)="isGame = false" [disabled]="!isGame">{{t('scoreboard')}}</button>
+    <button class="tab__button" mat-raised-button (click)="isGame = false"
+      [disabled]="!isGame">{{t('scoreboard')}}</button>
   </div>
   @if (isGame) {
-    @if (activeGame$ |async; as activeGame) {
-      <div class="tips__wrapper">
-        <mat-accordion>
-          <mat-expansion-panel
-            (opened)="helpOpenState = true"
-            (closed)="helpOpenState = false"
-          >
-            <mat-expansion-panel-header>
-              <mat-panel-title>
-                {{t('howToPlay')}}
-              </mat-panel-title>
-              <mat-panel-description>
-                {{t(helpOpenState ? 'hideTips' : 'showTips')}}
-              </mat-panel-description>
-            </mat-expansion-panel-header>
-            <ng-container *ngComponentOutlet="activeGame.tips"/>
-          </mat-expansion-panel>
-        </mat-accordion>
-      </div>
-      <div class="game__wrapper">
-        <ng-container *ngComponentOutlet="activeGame.game"/>
-      </div>
-    }
+  @if (activeGame$ |async; as activeGame) {
+  <div class="tips__wrapper">
+    <mat-accordion>
+      <mat-expansion-panel (opened)="helpOpenState = true" (closed)="helpOpenState = false">
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            {{t('howToPlay')}}
+          </mat-panel-title>
+          <mat-panel-description>
+            {{t(helpOpenState ? 'hideTips' : 'showTips')}}
+          </mat-panel-description>
+        </mat-expansion-panel-header>
+        <ng-container *ngComponentOutlet="activeGame.tips" />
+      </mat-expansion-panel>
+    </mat-accordion>
+  </div>
+  <div class="game__wrapper">
+    <div class="game__component">
+      <ng-container *ngComponentOutlet="activeGame.game" />
+    </div>
+  </div>
+  }
   }
   @else {
-    <div class="scoreboard__wrapper">
-      <pw-scoreboard />
-    </div>
+  <div class="scoreboard__wrapper">
+    <pw-scoreboard />
+  </div>
   }
 </div>
