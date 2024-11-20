@@ -304,6 +304,6 @@ export class MinesweeperComponent {
       Math.floor(
         (this.seconds * Math.pow(10, this.gameLevel + 1)) / (this.gameLevel + 3)
       );
-    this.scoreService.updateScores(this.yourScore);
+      this.scoreService.updateScores({score: this.yourScore, username: 'Player'});
   }
 }

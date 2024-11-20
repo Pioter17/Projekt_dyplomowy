@@ -1,7 +1,6 @@
-import { Type } from "@angular/core";
+import { Type } from '@angular/core';
 
 export interface Game {
-  tips: Type<unknown>,
-  game: Type<unknown>,
-  scores: number[],
+  tips: Type<unknown>;
+  game: Type<unknown>;
 }

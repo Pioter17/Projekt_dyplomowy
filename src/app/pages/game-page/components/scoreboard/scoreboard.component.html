@@ -1,7 +1,7 @@
 <div class="scoreboard">
   @for (score of (scores$ |async) | slice:0:10; track $index) {
     <div class="score">
-      {{ score }}
+      {{ score.score }} - {{ score.username }}
     </div>
   }
 </div>

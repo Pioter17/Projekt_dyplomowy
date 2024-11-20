@@ -196,6 +196,6 @@ export class MemoryComponent {
       Math.floor(
         (this.turns * Math.pow(10, this.gameLevel + 1)) / this.gameLevel
       );
-    this.scoreService.updateScores(this.yourScore);
+      this.scoreService.updateScores({score: this.yourScore, username: 'Player'});
   }
 }

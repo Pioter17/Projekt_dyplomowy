@@ -15,19 +15,22 @@ public class Scores {
     private Long id;
 
     private Integer userId;
+    private String username;
     private String game;
     private Integer score;
 
 
-    public Scores(Long id, Integer userId, String game, Integer score) {
+    public Scores(Long id, Integer userId, String username, String game, Integer score) {
         this.id = id;
         this.userId = userId;
+        this.username = username;
         this.game = game;
         this.score = score;
     }
 
-    public Scores(Integer userId, String game, Integer score) {
+    public Scores(Integer userId, String username, String game, Integer score) {
         this.userId = userId;
+        this.username = username;
         this.game = game;
         this.score = score;
     }

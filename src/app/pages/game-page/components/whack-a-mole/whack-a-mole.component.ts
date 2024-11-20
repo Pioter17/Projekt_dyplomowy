@@ -144,6 +144,6 @@ export class WhackAMoleComponent {
 
   countScore() {
     this.yourScore = Math.floor(6000 * this.gameLevel * this.points);
-    this.scoreService.updateScores(this.yourScore);
+    this.scoreService.updateScores({score: this.yourScore, username: 'Player'});
   }
 }

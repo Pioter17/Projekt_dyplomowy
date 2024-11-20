@@ -167,6 +167,6 @@ export class MastermindComponent {
     if (this.yourScore > 1000000) {
       this.yourScore = 1000000;
     }
-    this.scoreService.updateScores(this.yourScore);
+    this.scoreService.updateScores({score: this.yourScore, username: 'Player'});
   }
 }

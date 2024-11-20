@@ -42,7 +42,7 @@ export class GamePageComponent implements OnInit {
     this.activeGame$ = this.route.params.pipe(
       map((params) => params['name'] as string),
       tap((name) => this.gameName = name),
-      tap((name) => this.scoreService.setInitialScores(Games?.[name].scores)),
+      tap((name) => this.scoreService.setInitialScores(name)),
       map((name) => Games?.[name]),
     );
   }

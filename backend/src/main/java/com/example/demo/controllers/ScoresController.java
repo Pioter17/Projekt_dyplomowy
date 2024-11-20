@@ -37,7 +37,7 @@ public class ScoresController {
 
     // Endpoint do pobierania wyników z danej gry
     @GetMapping("/best")
-    public ResponseEntity<List<Scores>> searchScores(@RequestParam("game") String gameName) {
+    public ServiceResponse<List<Scores>> searchScores(@RequestParam("game") String gameName) {
         List<Scores> allScores = scoresRepository.findAll();
 
         List<Scores> matchingScores = allScores
@@ -47,9 +47,9 @@ public class ScoresController {
           .collect(Collectors.toList());
 
         if (matchingScores.isEmpty()) {
-            return ResponseEntity.ok(Collections.emptyList());
+            return new ServiceResponse<List<Scores>>(Collections.emptyList(), false, "No scores found");
         } else {
-            return ResponseEntity.ok(matchingScores);
+            return new ServiceResponse<List<Scores>>(matchingScores, true, "Scores found");
         }
     }
 
@@ -79,7 +79,7 @@ public class ScoresController {
     public ServiceResponse<Scores> addScore(@RequestBody ScoresDTO ScoresDTO) {
         Scores scoreToAdd;
         try{
-            scoreToAdd = new Scores(ScoresDTO.getUserId(), ScoresDTO.getGame(), ScoresDTO.getScore());
+            scoreToAdd = new Scores(ScoresDTO.getUserId(), ScoresDTO.getUsername(), ScoresDTO.getGame(), ScoresDTO.getScore());
         } catch (Exception e) {
             return new ServiceResponse<Scores>(null,false,"Cannot parse item");
         }

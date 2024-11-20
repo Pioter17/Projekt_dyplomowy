@@ -78,7 +78,7 @@ public class AppConfig {
                 users.forEach(user -> {
                   for (int i = 0; i < 3; i++) {
                     int score = faker.number().numberBetween(0, 1000000);
-                    Scores newScore = new Scores(user.getId(), game, score);
+                    Scores newScore = new Scores(user.getId(), user.getName(), game, score);
                     scoresRepository.save(newScore);
                   }
                 });

@@ -235,7 +235,7 @@ export class SolitaireComponent {
     if (this.yourScore > 999999) {
       this.yourScore = 999999;
     }
-    this.scoreService.updateScores(this.yourScore);
+    this.scoreService.updateScores({score: this.yourScore, username: 'Player'});
   }
 
   private checkChainAndFinishCondition(columnId: number) {
