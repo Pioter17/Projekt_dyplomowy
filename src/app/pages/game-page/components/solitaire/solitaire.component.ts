@@ -173,6 +173,7 @@ export class SolitaireComponent {
         this.first = null;
         return;
       }
+      
       if (this.first.canBePlacedAt(second)) {
         this.move(this.first, second);
         this.first.setTemporaryStateChain('');
