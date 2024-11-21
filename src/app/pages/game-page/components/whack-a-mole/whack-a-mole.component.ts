@@ -8,7 +8,7 @@ import {
 } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { TranslocoModule } from '@jsverse/transloco';
-import { ScoreboardService } from '@pages/game-page/scoreboard.service';
+import { ScoreboardService } from '@pages/game-page/services/scoreboard.service';
 
 @Component({
   selector: 'pw-whack-a-mole',
@@ -144,6 +144,9 @@ export class WhackAMoleComponent {
 
   countScore() {
     this.yourScore = Math.floor(6000 * this.gameLevel * this.points);
-    this.scoreService.updateScores({score: this.yourScore, username: 'Player'});
+    this.scoreService.updateScores({
+      score: this.yourScore,
+      username: 'Player',
+    });
   }
 }

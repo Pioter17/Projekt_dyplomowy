@@ -6,7 +6,7 @@ import {
 } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { TranslocoModule } from '@jsverse/transloco';
-import { ScoreboardService } from '@pages/game-page/scoreboard.service';
+import { ScoreboardService } from '@pages/game-page/services/scoreboard.service';
 
 @Component({
   selector: 'pw-combinations',
@@ -158,6 +158,9 @@ export class CombinationsComponent {
     if (this.yourScore > 1000000) {
       this.yourScore = 1000000;
     }
-    this.scoreService.updateScores({score: this.yourScore, username: 'Player'});
+    this.scoreService.updateScores({
+      score: this.yourScore,
+      username: 'Player',
+    });
   }
 }

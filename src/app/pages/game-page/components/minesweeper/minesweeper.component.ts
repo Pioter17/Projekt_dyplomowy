@@ -10,7 +10,7 @@ import {
 import { Cords } from '@pages/game-page/interfaces/minesweeper.interface';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
-import { ScoreboardService } from '@pages/game-page/scoreboard.service';
+import { ScoreboardService } from '@pages/game-page/services/scoreboard.service';
 import { TranslocoModule } from '@jsverse/transloco';
 
 @Component({
@@ -304,6 +304,9 @@ export class MinesweeperComponent {
       Math.floor(
         (this.seconds * Math.pow(10, this.gameLevel + 1)) / (this.gameLevel + 3)
       );
-      this.scoreService.updateScores({score: this.yourScore, username: 'Player'});
+    this.scoreService.updateScores({
+      score: this.yourScore,
+      username: 'Player',
+    });
   }
 }

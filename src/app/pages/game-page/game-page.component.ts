@@ -8,7 +8,7 @@ import { Games } from '@core/config/games.config';
 import { RoutesPath } from '@core/constants/routes.const';
 import { TranslocoModule } from '@jsverse/transloco';
 import { ScoreboardComponent } from '@pages/game-page/components/scoreboard/scoreboard.component';
-import { ScoreboardService } from '@pages/game-page/scoreboard.service';
+import { ScoreboardService } from '@pages/game-page/services/scoreboard.service';
 import { Observable, map, tap } from 'rxjs';
 
 @Component({
@@ -19,14 +19,13 @@ import { Observable, map, tap } from 'rxjs';
     ScoreboardComponent,
     MatButtonModule,
     MatExpansionModule,
-    TranslocoModule
+    TranslocoModule,
   ],
   templateUrl: './game-page.component.html',
   styleUrl: './game-page.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class GamePageComponent implements OnInit {
-
   gameName: string;
   isGame: boolean = true;
   activeGame$: Observable<Game>;
@@ -35,15 +34,16 @@ export class GamePageComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private router: Router,
-    private scoreService: ScoreboardService,
-  ) { }
+    private scoreService: ScoreboardService
+  ) {}
 
   ngOnInit(): void {
+    console.log(localStorage.getItem('token'));
     this.activeGame$ = this.route.params.pipe(
       map((params) => params['name'] as string),
-      tap((name) => this.gameName = name),
+      tap((name) => (this.gameName = name)),
       tap((name) => this.scoreService.setInitialScores(name)),
-      map((name) => Games?.[name]),
+      map((name) => Games?.[name])
     );
   }
 }

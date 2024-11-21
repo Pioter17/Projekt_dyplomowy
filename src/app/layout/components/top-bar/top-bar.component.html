@@ -1,9 +1,20 @@
 <div class="topbar__wrapper" *transloco="let t">
   <div class="topbar__wrapper__button">
-    <button mat-stroked-button [ngClass]="{'hidden': isHidden, 'topbar__wrapper__button__element': true}" (click)="goBack()">{{t('goBack')}}</button>
+    <button mat-stroked-button [ngClass]="{'hidden': isHidden, 'topbar__wrapper__button__element': true}"
+      (click)="goBack()">{{t('goBack')}}</button>
+    <button mat-stroked-button [ngClass]="{'hidden': (!(isLoggedIn$| async) || isAchievementsPage), 'topbar__wrapper__button__element': true}"
+      (click)="goToAchievements()">{{t('goToAchievements')}}</button>
   </div>
   <h1 class="title">{{t('welcome')}}</h1>
   <div class="topbar__wrapper__button">
-    <button class="topbar__wrapper__button__element" mat-stroked-button (click)="changeLanguage()">{{t('changeLanguage')}}</button>
+    <button class="topbar__wrapper__button__element" mat-stroked-button
+      (click)="changeLanguage()">{{t('changeLanguage')}}</button>
+    <button mat-stroked-button [ngClass]="{'hidden': isLoginPage, 'topbar__wrapper__button__element': true}" (click)="manageAccount()">
+      @if (isLoggedIn$| async) {
+      {{t('logout')}}
+      } @else {
+      {{t('login')}}
+      }
+    </button>
   </div>
 </div>

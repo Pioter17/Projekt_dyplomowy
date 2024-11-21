@@ -1,0 +1,23 @@
+<ng-container *transloco="let t">
+	<form [formGroup]="form" class="register__form">
+		<mat-form-field>
+			<mat-label>{{t('username')}}</mat-label>
+			<input type="text" matInput formControlName="name">
+			<mat-error>
+				{{t('usernameError')}}
+			</mat-error>
+		</mat-form-field>
+		<mat-form-field>
+			<mat-label> {{t('password')}} </mat-label>
+			<input type="password" matInput formControlName="password">
+			<mat-error>
+				{{t('passwordError')}}
+			</mat-error>
+		</mat-form-field>
+		<a class="link" [href]="path"> {{t('loginLink')}} </a>
+		<button (click)="register()" mat-raised-button class="action__button"> {{t('register')}} </button>
+		@if (error) {
+			<span class="error"> {{t('registerError')}} </span>
+		}
+	</form>
+</ng-container>

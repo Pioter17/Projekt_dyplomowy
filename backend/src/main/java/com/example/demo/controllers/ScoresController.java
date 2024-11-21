@@ -47,14 +47,14 @@ public class ScoresController {
           .collect(Collectors.toList());
 
         if (matchingScores.isEmpty()) {
-            return new ServiceResponse<List<Scores>>(Collections.emptyList(), false, "No scores found");
+            return new ServiceResponse<>(Collections.emptyList(), false, "No scores found");
         } else {
-            return new ServiceResponse<List<Scores>>(matchingScores, true, "Scores found");
+            return new ServiceResponse<>(matchingScores, true, "Scores found");
         }
     }
 
   @GetMapping("/personal")
-  public ResponseEntity<List<Scores>> searchPlayerScores(
+  public ServiceResponse<List<Scores>> searchPlayerScores(
     @RequestParam("game") String gameName,
     @RequestParam("userId") Integer userId
   ) {
@@ -67,9 +67,9 @@ public class ScoresController {
       .collect(Collectors.toList());
 
     if (matchingScores.isEmpty()) {
-      return ResponseEntity.ok(Collections.emptyList());
+      return new ServiceResponse<>(Collections.emptyList(), false, "No scores found");
     } else {
-      return ResponseEntity.ok(matchingScores);
+      return new ServiceResponse<>(matchingScores, true, "Scores found");
     }
   }
 

@@ -7,7 +7,7 @@ import {
 import { MatButtonModule } from '@angular/material/button';
 import { TranslocoModule } from '@jsverse/transloco';
 import { Card } from '@pages/game-page/components/solitaire/card';
-import { ScoreboardService } from '@pages/game-page/scoreboard.service';
+import { ScoreboardService } from '@pages/game-page/services/scoreboard.service';
 import { GetLastFieldClassPipe } from '@shared/pipes/get-last-field-class.pipe';
 import { GetTemporaryStatePipe } from '@shared/pipes/get-temporary-state.pipe';
 import { IsCardRevealedPipe } from '@shared/pipes/is-card-revealed.pipe';
@@ -173,7 +173,7 @@ export class SolitaireComponent {
         this.first = null;
         return;
       }
-      
+
       if (this.first.canBePlacedAt(second)) {
         this.move(this.first, second);
         this.first.setTemporaryStateChain('');
@@ -214,7 +214,7 @@ export class SolitaireComponent {
     for (let i = 0; i < 10; i++) {
       let newCardOnTop = new Card(
         cardsToAdd[i] % 13,
-        Math.floor(cardsToAdd[i] / 13) % this.colors + 1,
+        (Math.floor(cardsToAdd[i] / 13) % this.colors) + 1,
         null,
         i,
         this.board[i].length,
@@ -235,7 +235,10 @@ export class SolitaireComponent {
     if (this.yourScore > 999999) {
       this.yourScore = 999999;
     }
-    this.scoreService.updateScores({score: this.yourScore, username: 'Player'});
+    this.scoreService.updateScores({
+      score: this.yourScore,
+      username: 'Player',
+    });
   }
 
   private checkChainAndFinishCondition(columnId: number) {

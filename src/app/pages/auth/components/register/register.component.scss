@@ -1,0 +1,28 @@
+:host {
+  display: block;
+}
+
+.register__form {
+  width: 70%;
+  max-width: 400px;
+  margin: 10% auto;
+  background-color: #ffebb2;
+  border: 3px solid #74512d;
+  padding: 40px;
+  border-radius: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.action__button {
+  width: 150px;
+  margin: auto;
+  margin-top: 10px;
+}
+
+.error {
+  width: 100%;
+  text-align: center;
+  margin-top: 10px;
+}

@@ -16,9 +16,7 @@ export class ScoreboardService {
   }
 
   setInitialScores(gameName: string) {
-    console.log('first');
     this.apiService.getScores(gameName).subscribe((scores) => {
-      console.log('second + ', scores);
       this.scores.next(scores);
     });
   }

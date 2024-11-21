@@ -2,7 +2,7 @@ export const RoutesPath = {
   HOME: 'home',
   AUTH: 'auth',
   LOGIN: 'login',
-  REGISTRATION: 'registration',
+  REGISTER: 'register',
   ACCOUNT: 'account',
   DASHBOARD: 'dashboard',
   MEMORY: 'memory',

@@ -1,23 +1,24 @@
 import { CommonModule } from '@angular/common';
-import { ChangeDetectionStrategy, ChangeDetectorRef, Component, EventEmitter, Output } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  ChangeDetectorRef,
+  Component,
+  EventEmitter,
+  Output,
+} from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { TranslocoModule } from '@jsverse/transloco';
-import { ScoreboardService } from '@pages/game-page/scoreboard.service';
+import { ScoreboardService } from '@pages/game-page/services/scoreboard.service';
 
 @Component({
   selector: 'pw-mastermind',
   standalone: true,
-  imports: [
-    CommonModule,
-    MatButtonModule,
-    TranslocoModule
-  ],
+  imports: [CommonModule, MatButtonModule, TranslocoModule],
   templateUrl: './mastermind.component.html',
   styleUrl: './mastermind.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class MastermindComponent {
-
   gameLevel: number;
   play: boolean;
   isSuccess: number;
@@ -37,9 +38,8 @@ export class MastermindComponent {
 
   constructor(
     private cdr: ChangeDetectorRef,
-    private scoreService: ScoreboardService,
-  ) { }
-
+    private scoreService: ScoreboardService
+  ) {}
 
   start(level?: number) {
     this.play = true;
@@ -88,22 +88,22 @@ export class MastermindComponent {
 
     switch (this.gameLevel) {
       case 1:
-        this.maxColors= 4;
+        this.maxColors = 4;
         balls = 4;
-        break
+        break;
       case 2:
-        this.maxColors= 6;
+        this.maxColors = 6;
         balls = 4;
-        break
+        break;
       case 3:
-        this.maxColors= 6;
+        this.maxColors = 6;
         balls = 6;
     }
     this.resetTimer();
     this.startTimer();
 
-    this.hiddenBallsColors = Array.from({ length: this.maxColors}, () => 0);
-    this.visibleBallsColors = Array.from({ length: this.maxColors}, () => 0);
+    this.hiddenBallsColors = Array.from({ length: this.maxColors }, () => 0);
+    this.visibleBallsColors = Array.from({ length: this.maxColors }, () => 0);
     this.tips = [];
     for (let i = 0; i < this.maxColors; i++) {
       let colorNumber = Math.floor(Math.random() * this.maxColors) + 1;
@@ -113,7 +113,8 @@ export class MastermindComponent {
   }
 
   changeColor(ballId: number) {
-    this.visibleBallsColors[ballId] = ((this.visibleBallsColors[ballId]) % this.maxColors) + 1;
+    this.visibleBallsColors[ballId] =
+      (this.visibleBallsColors[ballId] % this.maxColors) + 1;
     this.cdr.detectChanges();
   }
 
@@ -127,7 +128,10 @@ export class MastermindComponent {
     }
     this.turns++;
     this.wrongColorsError = false;
-    if (JSON.stringify(this.visibleBallsColors) == JSON.stringify(this.hiddenBallsColors)) {
+    if (
+      JSON.stringify(this.visibleBallsColors) ==
+      JSON.stringify(this.hiddenBallsColors)
+    ) {
       this.isSuccess = 1;
       this.play = false;
       this.stopTimer();
@@ -153,20 +157,32 @@ export class MastermindComponent {
           }
         }
       }
-      this.historicColors.push([...this.visibleBallsColors, ...this.tips])
+      this.historicColors.push([...this.visibleBallsColors, ...this.tips]);
       this.cdr.detectChanges();
     }
   }
 
   countScore() {
-    this.yourScore = Math.pow(10, this.gameLevel+3)
-                    -Math.floor(this.minutes*6*Math.pow(10, this.gameLevel+1)/(this.gameLevel+3))
-                    -Math.floor(this.seconds*Math.pow(10, this.gameLevel+1)/(this.gameLevel+3))
-                    -Math.floor(this.turns*3*Math.pow(10,this.gameLevel+1)/(this.gameLevel+3));
+    this.yourScore =
+      Math.pow(10, this.gameLevel + 3) -
+      Math.floor(
+        (this.minutes * 6 * Math.pow(10, this.gameLevel + 1)) /
+          (this.gameLevel + 3)
+      ) -
+      Math.floor(
+        (this.seconds * Math.pow(10, this.gameLevel + 1)) / (this.gameLevel + 3)
+      ) -
+      Math.floor(
+        (this.turns * 3 * Math.pow(10, this.gameLevel + 1)) /
+          (this.gameLevel + 3)
+      );
 
     if (this.yourScore > 1000000) {
       this.yourScore = 1000000;
     }
-    this.scoreService.updateScores({score: this.yourScore, username: 'Player'});
+    this.scoreService.updateScores({
+      score: this.yourScore,
+      username: 'Player',
+    });
   }
 }

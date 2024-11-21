@@ -8,7 +8,7 @@ import {
 } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { TranslocoModule } from '@jsverse/transloco';
-import { ScoreboardService } from '@pages/game-page/scoreboard.service';
+import { ScoreboardService } from '@pages/game-page/services/scoreboard.service';
 import { NumberToStringPipe } from '@shared/pipes/number-to-string.pipe';
 
 @Component({
@@ -196,6 +196,9 @@ export class MemoryComponent {
       Math.floor(
         (this.turns * Math.pow(10, this.gameLevel + 1)) / this.gameLevel
       );
-      this.scoreService.updateScores({score: this.yourScore, username: 'Player'});
+    this.scoreService.updateScores({
+      score: this.yourScore,
+      username: 'Player',
+    });
   }
 }

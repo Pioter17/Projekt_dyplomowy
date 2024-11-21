@@ -1,17 +1,11 @@
 import { CommonModule } from '@angular/common';
-import {
-  ChangeDetectionStrategy,
-  Component,
-  Input,
-  OnInit,
-} from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import {
   DisplayedScore,
   Score,
 } from '@pages/game-page/interfaces/scores.interface';
-import { ScoreboardService } from '@pages/game-page/scoreboard.service';
+import { ScoreboardService } from '@pages/game-page/services/scoreboard.service';
 import { Observable, map } from 'rxjs';
-import { use } from 'vue/types/umd';
 
 @Component({
   selector: 'pw-scoreboard',
@@ -30,6 +24,7 @@ export class ScoreboardComponent implements OnInit {
     this.scores$ = this.scoreService.getScores().pipe(
       map((data: Score[]) => {
         return data
+          .sort((a: Score, b: Score) => b.score - a.score)
           .map((score) => {
             return convertScores(score);
           });
