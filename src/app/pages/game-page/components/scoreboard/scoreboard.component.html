@@ -1,7 +1,29 @@
-<div class="scoreboard">
-  @for (score of (scores$ |async) | slice:0:10; track $index) {
-    <div class="score">
-      {{ score.score }} - {{ score.username }}
+<div class="scores__wrapper" *transloco="let t">
+  <div class="best__scores">
+    <h3 class="best__scores__title">
+      {{ t('bestScores') }}
+    </h3>
+    @for (score of (scores$ |async) | slice:0:10; track $index) {
+    <div class="best__scores__item">
+      <div class="best__scores__item__player">
+        {{ score.username }}
+      </div>
+      <div [ngClass]="[score.username == myUsername ? 'my__score' : 'score']">
+        {{ score.score }}
+      </div>  
     </div>
-  }
+    }
+  </div>
+  @if ((myScores$ |async).length > 0) {
+    <div class="my__scores">
+      <h3 class="my__scores__title">
+        {{ t('myScores') }}
+      </h3>
+      @for (score of (myScores$ |async) | slice:0:10; track $index) {
+      <div class="my__score">
+        {{score}}
+      </div>
+      }
+    </div>
+  }  
 </div>

@@ -4,7 +4,7 @@
     "minesweeper": "Minesweeper",
     "memory": "Memory",
     "mastermind": "Mastermind",
-    "whack-a-mole": "Whack-a-mole",
+    "whackamole": "Whack-a-mole",
     "combinations": "Combinations",
     "solitaire": "Solitaire",
     "try": "Try it!"
@@ -30,6 +30,8 @@
   "welcomeGame": "Welcome to the game {{name}}",
   "game": "Game",
   "scoreboard": "Scoreboard",
+  "bestScores": "Best scores",
+  "myScores": "My scores",
   "howToPlay": "How to play?",
   "showTips": "Show tips",
   "hideTips": "Hide tips",

@@ -4,7 +4,7 @@
     "minesweeper": "Saper",
     "memory": "Memory",
     "mastermind": "Mastermind",
-    "whack-a-mole": "Zbij Kreta",
+    "whackamole": "Zbij Kreta",
     "combinations": "Kombinacje",
     "solitaire": "Pasjans",
     "try": "Spróbuj!"
@@ -30,6 +30,8 @@
   "welcomeGame": "Witaj w grze {{name}}",
   "game": "Gra",
   "scoreboard": "Tablica wyników",
+  "bestScores": "Najlepsze wyniki",
+  "myScores": "Moje wyniki",
   "howToPlay": "Jak grać?",
   "showTips": "Pokaż wskazówki",
   "hideTips": "Ukryj wskazówki",

@@ -69,7 +69,7 @@ export class AuthService {
   logout() {
     this.localStorageService.setItem('token', '');
     this.localStorageService.setItem('name', '');
-    this.localStorageService.setItem('token', '');
+    this.localStorageService.setItem('status', '');
     this.isLoggedIn.next(false);
   }
 }

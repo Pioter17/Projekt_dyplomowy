@@ -6,6 +6,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Game } from '@core/config/game.interface';
 import { Games } from '@core/config/games.config';
 import { RoutesPath } from '@core/constants/routes.const';
+import { LocalStorageService } from '@core/services/local-storage.service';
 import { TranslocoModule } from '@jsverse/transloco';
 import { ScoreboardComponent } from '@pages/game-page/components/scoreboard/scoreboard.component';
 import { ScoreboardService } from '@pages/game-page/services/scoreboard.service';
@@ -33,16 +34,22 @@ export class GamePageComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
-    private router: Router,
-    private scoreService: ScoreboardService
+    private scoreService: ScoreboardService,
+    private localStorageService: LocalStorageService
   ) {}
 
   ngOnInit(): void {
-    console.log(localStorage.getItem('token'));
     this.activeGame$ = this.route.params.pipe(
       map((params) => params['name'] as string),
       tap((name) => (this.gameName = name)),
-      tap((name) => this.scoreService.setInitialScores(name)),
+      tap((gameName) => {
+        this.scoreService.fetchScores(gameName);
+        if (this.localStorageService.getItem('status') == 'logged') {
+          this.scoreService.fetchMyScores(
+            gameName
+          );
+        }
+      }),
       map((name) => Games?.[name])
     );
   }

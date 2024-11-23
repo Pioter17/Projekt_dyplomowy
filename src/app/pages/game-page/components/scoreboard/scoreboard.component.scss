@@ -2,17 +2,65 @@
   display: block;
 }
 
-.scoreboard {
+.scores__wrapper {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 20px;
+  padding-right: 5%;
+}
+
+.best__scores,
+.my__scores {
   display: flex;
   flex-direction: column;
   font-size: 25px;
-  width: 100%;
+
+  &__title {
+    text-align: center;
+    font-size: 30px;
+    margin-bottom: 20px;
+  }
+}
+
+.best__scores {
+  width: 60%;
+
+  &__item {
+    display: flex;
+    justify-content: center;
+    gap: 0;
+
+    &__player {
+      width: 40%;
+      background-color: rgba(82, 246, 96, 0.766);
+      text-align: center;
+      padding: 5px;
+      border: 2px solid #352719;
+      transform: skew(-20deg);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+  }
+}
+
+.my__scores {
+  width: 30%;
+}
+
+.score,
+.my__score {
+  text-align: center;
+  padding: 15px;
+  border: 2px solid #352719;
+  transform: skew(-20deg);
 }
 
 .score {
-  text-align: center;
-  padding: 15px;
   background-color: yellow;
-  border: 2px solid #352719;
-  transform: skew(-20deg);
+}
+
+.my__score {
+  background-color: rgba(82, 246, 96, 0.766);
+  font-weight: bold;
 }
