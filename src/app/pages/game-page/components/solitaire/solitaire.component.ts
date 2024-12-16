@@ -10,8 +10,6 @@ import { Card } from '@pages/game-page/components/solitaire/card';
 import { ScoreboardService } from '@pages/game-page/services/scoreboard.service';
 import { GetLastFieldClassPipe } from '@shared/pipes/get-last-field-class.pipe';
 import { GetTemporaryStatePipe } from '@shared/pipes/get-temporary-state.pipe';
-import { IsCardRevealedPipe } from '@shared/pipes/is-card-revealed.pipe';
-import { SolitaireCardValuePipe } from '@shared/pipes/solitaire-card-value.pipe';
 
 @Component({
   selector: 'pw-solitaire',
@@ -20,8 +18,6 @@ import { SolitaireCardValuePipe } from '@shared/pipes/solitaire-card-value.pipe'
     CommonModule,
     TranslocoModule,
     MatButtonModule,
-    SolitaireCardValuePipe,
-    IsCardRevealedPipe,
     GetTemporaryStatePipe,
     GetLastFieldClassPipe,
   ],
@@ -237,7 +233,7 @@ export class SolitaireComponent {
     }
     this.scoreService.updateScores({
       score: this.yourScore,
-      username: 'Player',
+      game: 'solitaire',
     });
   }
 

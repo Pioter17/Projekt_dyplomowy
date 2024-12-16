@@ -160,7 +160,7 @@ export class CombinationsComponent {
     }
     this.scoreService.updateScores({
       score: this.yourScore,
-      username: 'Player',
+      game: 'combinations',
     });
   }
 }

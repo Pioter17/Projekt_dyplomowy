@@ -96,14 +96,35 @@ public class ScoresController {
   }
 
     // Endpoint do dodawania nowego wyniku
-    @PostMapping
-    @CrossOrigin(origins = "http://localhost:4200")
-    public ServiceResponse<Scores> addScore(@RequestBody ScoresDTO ScoresDTO) {
+    @PostMapping("/add")
+//    @CrossOrigin(origins = "http://localhost:4200")
+    public ServiceResponse<Scores> addScore(
+      @RequestBody ScoresDTO ScoresDTO,
+      HttpServletRequest request
+    ) {
+      System.out.println("weszło w endpointa");
+      final String authHeader = request.getHeader("Authorization");
+      final String jwt;
+      final String userName;
+      if (Objects.equals(authHeader, "Bearer")) {
+        return new ServiceResponse<>(null,false,"Cannot parse item");
+      }
+      jwt = authHeader.substring(7);
+      userName = jwtService.extractUsername(jwt);
+      Integer userId;
+      System.out.println("przed ifem");
+      if (userRepository.findByName(userName).isPresent()) {
+        userId = userRepository.findByName(userName).get().getId();
+        System.out.println("if działa");
+      }
+      else {
+        return new ServiceResponse<>(null,false,"Cannot parse item");
+      }
         Scores scoreToAdd;
         try{
-            scoreToAdd = new Scores(ScoresDTO.getUserId(), ScoresDTO.getUsername(), ScoresDTO.getGame(), ScoresDTO.getScore());
+            scoreToAdd = new Scores(userId, userName, ScoresDTO.getGame(), ScoresDTO.getScore());
         } catch (Exception e) {
-            return new ServiceResponse<Scores>(null,false,"Cannot parse item");
+            return new ServiceResponse<>(null,false,"Cannot parse item");
         }
         if (scoreToAdd.getUserId() == null || scoreToAdd.getGame() == null || scoreToAdd.getScore() == null) {
             return new ServiceResponse<>(null, false, "Body is missing");

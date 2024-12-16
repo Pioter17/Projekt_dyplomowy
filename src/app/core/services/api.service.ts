@@ -4,7 +4,7 @@ import { ApiRoutes } from '@core/constants/api.const';
 import { map } from 'rxjs/operators';
 import { ApiResponse } from '@core/interfaces/api.interface';
 import { Environment } from '@env/environment.const';
-import { Score } from '@pages/game-page/interfaces/scores.interface';
+import { Score, ScoreDTO } from '@pages/game-page/interfaces/scores.interface';
 import { Observable } from 'rxjs';
 
 @Injectable({
@@ -15,7 +15,9 @@ export class ApiService {
 
   getScores(game: string): Observable<Score[]> {
     return this.http
-      .get<ApiResponse<Score[]>>(`${Environment.HttpBackend}${ApiRoutes.BEST}${game}`)
+      .get<ApiResponse<Score[]>>(
+        `${Environment.HttpBackend}${ApiRoutes.BEST}${game}`
+      )
       .pipe(
         map((res: ApiResponse<Score[]>) => {
           if (res.isSuccess) {
@@ -27,15 +29,19 @@ export class ApiService {
       );
   }
 
-  postScore(score: Score): Observable<Score[]> {
+  postScore(score: ScoreDTO): Observable<Score> {
     return this.http
-      .post<ApiResponse<Score[]>>(`${Environment.HttpBackend}${ApiRoutes.SCORES}`, score)
+      .post<ApiResponse<Score>>(
+        `${Environment.HttpBackend}${ApiRoutes.SCORES}${ApiRoutes.ADD}`,
+        score
+      )
       .pipe(
-        map((res: ApiResponse<Score[]>) => {
+        map((res: ApiResponse<Score>) => {
           if (res.isSuccess) {
             return res.data;
           } else {
-            throw new Error(res.message);
+            return null;
+            // throw new Error(res.message);
           }
         })
       );

@@ -2,10 +2,9 @@ import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatExpansionModule } from '@angular/material/expansion';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 import { Game } from '@core/config/game.interface';
 import { Games } from '@core/config/games.config';
-import { RoutesPath } from '@core/constants/routes.const';
 import { LocalStorageService } from '@core/services/local-storage.service';
 import { TranslocoModule } from '@jsverse/transloco';
 import { ScoreboardComponent } from '@pages/game-page/components/scoreboard/scoreboard.component';
@@ -45,9 +44,7 @@ export class GamePageComponent implements OnInit {
       tap((gameName) => {
         this.scoreService.fetchScores(gameName);
         if (this.localStorageService.getItem('status') == 'logged') {
-          this.scoreService.fetchMyScores(
-            gameName
-          );
+          this.scoreService.fetchMyScores(gameName);
         }
       }),
       map((name) => Games?.[name])

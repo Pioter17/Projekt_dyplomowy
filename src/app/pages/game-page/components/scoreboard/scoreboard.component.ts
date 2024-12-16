@@ -1,12 +1,13 @@
 import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { LocalStorageService } from '@core/services/local-storage.service';
 import { TranslocoModule } from '@jsverse/transloco';
 import {
   DisplayedScore,
   Score,
 } from '@pages/game-page/interfaces/scores.interface';
 import { ScoreboardService } from '@pages/game-page/services/scoreboard.service';
-import { Observable, map } from 'rxjs';
+import { Observable, map, tap } from 'rxjs';
 
 @Component({
   selector: 'pw-scoreboard',
@@ -19,12 +20,16 @@ import { Observable, map } from 'rxjs';
 export class ScoreboardComponent implements OnInit {
   scores$: Observable<DisplayedScore[]>;
   myScores$: Observable<string[]>;
-  myUsername = 'Paula';
+  myUsername = '';
 
-  constructor(private scoreService: ScoreboardService) {}
+  constructor(
+    private scoreService: ScoreboardService,
+    private localStorageService: LocalStorageService
+  ) {}
 
   ngOnInit(): void {
     this.scores$ = this.scoreService.getScores().pipe(
+      tap(() => (this.myUsername = this.localStorageService.getItem('name'))),
       map((data: Score[]) => {
         return data
           .sort((a: Score, b: Score) => b.score - a.score)

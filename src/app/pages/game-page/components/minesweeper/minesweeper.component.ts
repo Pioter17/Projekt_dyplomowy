@@ -306,7 +306,7 @@ export class MinesweeperComponent {
       );
     this.scoreService.updateScores({
       score: this.yourScore,
-      username: 'Player',
+      game: 'minesweeper',
     });
   }
 }

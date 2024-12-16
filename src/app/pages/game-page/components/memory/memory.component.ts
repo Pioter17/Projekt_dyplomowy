@@ -9,12 +9,11 @@ import {
 import { MatButtonModule } from '@angular/material/button';
 import { TranslocoModule } from '@jsverse/transloco';
 import { ScoreboardService } from '@pages/game-page/services/scoreboard.service';
-import { NumberToStringPipe } from '@shared/pipes/number-to-string.pipe';
 
 @Component({
   selector: 'pw-memory',
   standalone: true,
-  imports: [CommonModule, NumberToStringPipe, MatButtonModule, TranslocoModule],
+  imports: [CommonModule, MatButtonModule, TranslocoModule],
   templateUrl: './memory.component.html',
   styleUrl: './memory.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -198,7 +197,7 @@ export class MemoryComponent {
       );
     this.scoreService.updateScores({
       score: this.yourScore,
-      username: 'Player',
+      game: 'memory',
     });
   }
 }

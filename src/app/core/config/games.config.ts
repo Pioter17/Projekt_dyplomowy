@@ -21,7 +21,7 @@ export const Games: Record<string, Game> = {
     game: MemoryComponent,
     tips: MemoryTipsComponent,
   },
-  'whackamole': {
+  whackamole: {
     game: WhackAMoleComponent,
     tips: WhackamoleTipsComponent,
   },

@@ -146,7 +146,7 @@ export class WhackAMoleComponent {
     this.yourScore = Math.floor(6000 * this.gameLevel * this.points);
     this.scoreService.updateScores({
       score: this.yourScore,
-      username: 'Player',
+      game: 'whackamole',
     });
   }
 }

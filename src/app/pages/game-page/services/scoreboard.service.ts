@@ -1,7 +1,8 @@
 import { Inject, Injectable } from '@angular/core';
 import { ApiService } from '@core/services/api.service';
 import { AuthService } from '@core/services/auth.service';
-import { Score } from '@pages/game-page/interfaces/scores.interface';
+import { LocalStorageService } from '@core/services/local-storage.service';
+import { Score, ScoreDTO } from '@pages/game-page/interfaces/scores.interface';
 import { BehaviorSubject, map } from 'rxjs';
 
 @Injectable({
@@ -10,6 +11,7 @@ import { BehaviorSubject, map } from 'rxjs';
 export class ScoreboardService {
   constructor(
     private apiService: ApiService,
+    private localStorageService: LocalStorageService,
     @Inject(AuthService) private authService: AuthService
   ) {
     this.authService.checkStatus().subscribe((isLoggedIn) => {
@@ -45,7 +47,19 @@ export class ScoreboardService {
       });
   }
 
-  updateScores(newScore: Score) {
-    this.scores.next([...this.scores.getValue(), newScore]);
+  updateScores(newScore: ScoreDTO) {
+    this.apiService.postScore(newScore).subscribe(() => {
+      this.scores.next([
+        ...this.scores.getValue(),
+        {
+          username:
+            this.localStorageService.getItem('name') == ''
+              ? 'Guest'
+              : this.localStorageService.getItem('name'),
+          score: newScore.score,
+        },
+      ]);
+      this.myScores.next([...this.myScores.getValue(), newScore.score]);
+    });
   }
 }

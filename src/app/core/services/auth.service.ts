@@ -16,7 +16,11 @@ export class AuthService {
   constructor(
     private http: HttpClient,
     private localStorageService: LocalStorageService
-  ) {}
+  ) {
+    this.localStorageService.setItem('token', '');
+    this.localStorageService.setItem('name', '');
+    this.localStorageService.setItem('status', '');
+  }
 
   private isLoggedIn = new BehaviorSubject<boolean>(false);
 
