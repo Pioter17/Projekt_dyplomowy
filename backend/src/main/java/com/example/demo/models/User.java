@@ -28,6 +28,11 @@ public class User implements UserDetails {
     private String name;
     private String password;
 
+  @ElementCollection
+  @CollectionTable(name = "user_achievements", joinColumns = @JoinColumn(name = "user_id"))
+  @Column(name = "achievement_id")
+  private List<Integer> achievements;
+
     @Enumerated(EnumType.STRING)
     private Role role;
 
@@ -43,7 +48,7 @@ public class User implements UserDetails {
         this.name = name;
     }
 
-    public void setPasswd(String passwd) {
+  public void setPasswd(String passwd) {
         this.password = passwd;
     }
 

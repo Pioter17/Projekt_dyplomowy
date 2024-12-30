@@ -54,7 +54,7 @@ export class TopBarComponent implements OnInit, OnDestroy {
             } else {
               this.isHidden = false;
             }
-            if (this.router.url == '/achievements') {
+            if (this.router.url == '/home/achievements') {
               this.isAchievementsPage = true;
             } else {
               this.isAchievementsPage = false;
@@ -91,6 +91,7 @@ export class TopBarComponent implements OnInit, OnDestroy {
   }
 
   goBack() {
+    this.isAchievementsPage = false;
     this.router.navigateByUrl(RoutesPath.HOME);
   }
 
@@ -100,7 +101,10 @@ export class TopBarComponent implements OnInit, OnDestroy {
     );
   }
 
-  goToAchievements() {}
+  goToAchievements() {
+    this.isAchievementsPage = true;
+    this.router.navigateByUrl(`/${RoutesPath.HOME}/${RoutesPath.ACHIEVEMENTS}`);
+  }
 
   manageAccount() {
     this.isLoggedIn$.subscribe((status) => {

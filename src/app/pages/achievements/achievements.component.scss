@@ -1,0 +1,19 @@
+:host {
+  display: block;
+}
+
+.achievements__wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.achievement {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 200px;
+  height: 130px;
+  border: 1px solid black;
+}

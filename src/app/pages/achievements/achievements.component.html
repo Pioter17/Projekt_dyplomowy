@@ -1,0 +1,35 @@
+<div *transloco="let t; read: 'achievements'">
+	@if (unlockedAchievements$ |async) {
+	<div class="achievements__wrapper" *transloco="let t">
+		@for (achievement of unlockedAchievements$ |async; track $index) {
+		<div class="achievement">
+			<div class="achievement__icon">
+				<img [src]="" alt="Achievement icon">
+			</div>
+			<div class="achievement__info">
+				<h3 class="achievement__title">{{ t('achievements.titles.' + achievement.title) }}</h3>
+				<p class="achievement__description">{{ t('achievements.descriptions.' + achievement.id) }}</p>
+			</div>
+		</div>
+		<hr>
+		}
+		@for (achievement of achievementsToUnlock$ |async; track $index) {
+		<div class="achievement">
+			<div class="achievement__icon">
+				<img [src]="" alt="Achievement icon">
+			</div>
+			<div class="achievement__info">
+				<h3 class="achievement__title">{{ t('achievements.titles.' + achievement.title) }}</h3>
+				<p class="achievement__description">{{ t('achievements.descriptions.' + achievement.id) }}</p>
+			</div>
+		</div>
+		}
+	</div>
+	} @else {
+	<div class="empty">
+		<h2>
+			{{ t('noAchievements') }}
+		</h2>
+	</div>
+	}
+</div>

@@ -12,6 +12,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { ScoreboardService } from '@pages/game-page/services/scoreboard.service';
 import { TranslocoModule } from '@jsverse/transloco';
+import { AchievementsService } from '@pages/achievements/services/achievements.service';
 
 @Component({
   selector: 'pw-minesweeper',
@@ -24,7 +25,8 @@ import { TranslocoModule } from '@jsverse/transloco';
 export class MinesweeperComponent {
   constructor(
     private cdr: ChangeDetectorRef,
-    private scoreService: ScoreboardService
+    private scoreService: ScoreboardService,
+    private achievementService: AchievementsService
   ) {}
 
   play: boolean;
@@ -248,6 +250,9 @@ export class MinesweeperComponent {
       this.play = false;
       this.isSuccess = 1;
       this.stopTimer();
+      if (this.gameLevel == 1 && this.minutes < 1) {
+        this.achievementService.unlockAchievement(1);
+      }
       this.countScore();
     }
   }

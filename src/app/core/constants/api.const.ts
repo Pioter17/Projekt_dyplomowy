@@ -6,4 +6,5 @@ export const ApiRoutes = {
   AUTH: '/auth/',
   LOGIN: 'login',
   REGISTER: 'register',
+  ACHIEVEMENTS: '/achievements',
 };

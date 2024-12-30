@@ -3,7 +3,7 @@ export const RoutesPath = {
   AUTH: 'auth',
   LOGIN: 'login',
   REGISTER: 'register',
-  ACCOUNT: 'account',
+  ACHIEVEMENTS: 'achievements',
   DASHBOARD: 'dashboard',
   MEMORY: 'memory',
   MINESWEEPER: 'minesweeper',

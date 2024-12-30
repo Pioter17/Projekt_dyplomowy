@@ -1,11 +1,11 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { ApiRoutes } from '@core/constants/api.const';
-import { map } from 'rxjs/operators';
 import { ApiResponse } from '@core/interfaces/api.interface';
 import { Environment } from '@env/environment.const';
 import { Score, ScoreDTO } from '@pages/game-page/interfaces/scores.interface';
 import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root',
@@ -57,7 +57,41 @@ export class ApiService {
           if (res.isSuccess) {
             return res.data;
           } else {
-            throw new Error(res.message);
+            return null;
+            // throw new Error(res.message);
+          }
+        })
+      );
+  }
+
+  getAchievements(): Observable<number[]> {
+    return this.http
+      .get<ApiResponse<number[]>>(
+        `${Environment.HttpBackend}${ApiRoutes.ACHIEVEMENTS}`
+      )
+      .pipe(
+        map((res: ApiResponse<number[]>) => {
+          if (res.isSuccess) {
+            return res.data;
+          } else {
+            return null;
+          }
+        })
+      );
+  }
+
+  unlockAchievement(achievementId: number): Observable<number> {
+    return this.http
+      .post<ApiResponse<number>>(
+        `${Environment.HttpBackend}${ApiRoutes.ACHIEVEMENTS}${ApiRoutes.ADD}/${achievementId}`,
+        {}
+      )
+      .pipe(
+        map((res: ApiResponse<number>) => {
+          if (res.isSuccess) {
+            return res.data;
+          } else {
+            return null;
           }
         })
       );

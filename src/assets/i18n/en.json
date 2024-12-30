@@ -10,6 +10,8 @@
     "try": "Try it!"
   },
   "goBack": "Go back",
+  "goToAchievements": "Go to achievements",
+  "noAchievements": "No achievements",
   "changeLanguage": "Change language",
   "account": "Account",
   "login": "Login",

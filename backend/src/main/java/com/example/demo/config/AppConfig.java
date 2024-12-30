@@ -2,13 +2,10 @@ package com.example.demo.config;
 
 import com.example.demo.models.Scores;
 import com.example.demo.models.User;
-import com.example.demo.other.RegisterRequest;
 import com.example.demo.other.Role;
 import com.example.demo.repositories.ScoresRepository;
 import com.example.demo.repositories.UserRepository;
-import com.example.demo.services.AuthenticationService;
 import com.github.javafaker.Faker;
-import jakarta.persistence.Enumerated;
 import lombok.RequiredArgsConstructor;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
@@ -17,7 +14,6 @@ import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -25,7 +21,6 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 
 import java.util.List;
 import java.util.Locale;
-import java.util.Optional;
 import java.util.Random;
 
 @Configuration
@@ -33,7 +28,6 @@ import java.util.Random;
 public class AppConfig {
 
     private final UserRepository userRepository;
-//    private final AuthenticationService authenticationService;
 
     @Bean
     public UserDetailsService userDetailsService(){

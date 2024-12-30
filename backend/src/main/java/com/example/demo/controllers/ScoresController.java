@@ -10,10 +10,6 @@ import com.example.demo.services.ScoresService;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.authentication.CachingUserDetailsService;
-import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.*;
@@ -97,12 +93,10 @@ public class ScoresController {
 
     // Endpoint do dodawania nowego wyniku
     @PostMapping("/add")
-//    @CrossOrigin(origins = "http://localhost:4200")
     public ServiceResponse<Scores> addScore(
       @RequestBody ScoresDTO ScoresDTO,
       HttpServletRequest request
     ) {
-      System.out.println("weszło w endpointa");
       final String authHeader = request.getHeader("Authorization");
       final String jwt;
       final String userName;
@@ -112,10 +106,8 @@ public class ScoresController {
       jwt = authHeader.substring(7);
       userName = jwtService.extractUsername(jwt);
       Integer userId;
-      System.out.println("przed ifem");
       if (userRepository.findByName(userName).isPresent()) {
         userId = userRepository.findByName(userName).get().getId();
-        System.out.println("if działa");
       }
       else {
         return new ServiceResponse<>(null,false,"Cannot parse item");
